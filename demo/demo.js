@@ -1,0 +1,11 @@
+const svg = require('..')
+
+const iconCheck = svg( {path: 'assets/check.svg' })
+const iconMinus = svg( {path: 'assets/minus.svg' })
+const iconPlus = svg( {path: 'assets/plus.svg' })
+const iconCancel = svg( {path: 'assets/cancel.svg' })
+const iconArrowDown = svg( {path: 'assets/arrow-down.svg' })
+const iconArrowLeft = svg( {path: 'assets/arrow-left.svg' })
+const iconTriangleArrowLeft = svg( {path: 'assets/triangle-arrow-left.svg' })
+const iconOption = svg( {path: 'assets/option.svg' })
+document.body.append(iconCheck, iconMinus, iconPlus, iconCancel, iconArrowDown, iconArrowLeft, iconTriangleArrowLeft, iconOption)

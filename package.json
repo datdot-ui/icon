@@ -1,0 +1,28 @@
+{
+  "name": "datdot-ui-graphic",
+  "version": "0.0.0",
+  "description": "Render svg as icon element to the DOMElement",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "budo demo/demo.js:bundle.js --open --live",
+    "build": "browserify demo/demo.js -o bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fionataeyang/datdot-ui-graphic.git"
+  },
+  "keywords": [
+    "svg",
+    "icon"
+  ],
+  "author": "fionataeyang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fionataeyang/datdot-ui-graphic/issues"
+  },
+  "homepage": "https://github.com/fionataeyang/datdot-ui-graphic#readme",
+  "dependencies": {
+    "budo": "^11.6.4"
+  }
+}
