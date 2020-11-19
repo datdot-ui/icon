@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/fionataeyang/datdot-ui-graphic#readme",
   "dependencies": {
-    "budo": "^11.6.4"
+    "budo": "^11.6.4",
+    "csjs-inject": "^1.0.1"
   }
 }
