@@ -1,27 +1,42 @@
-module.exports = svg
-
-function svg(opts) {
-    var { css = null, path }  = opts
-    
-    const el = document.createElement('div')
-    
-    async function load(done) {
-        const res = await fetch(path)
-        const parse = document.createElement('div')
-
-        if (res.status == 200) {
-            let graphic = await res.text()
-            parse.innerHTML = graphic
-            return done(null, parse.children[0])
-        }
-        throw new Error(res.status)
+const styleSheet = require('supportCSSStyleSheet')
+const svg = require('svg')
+module.exports = ({name, path, theme}) => {
+    function layout(style) {
+        const icon = document.createElement('i-icon')
+        const root = icon.attachShadow({mode: 'closed'})
+        const url = path ? path : './src/svg'
+        const img = svg(`${url}/${name}.svg`)
+        styleSheet(root, style)
+        root.append(img)
+        return icon
     }
-
-    load((err, svg) => {
-        if (err) console.error(err)
-        if (css) el.className = css
-        el.append(svg)
-    })
-    
-    return el
-}   
+    // insert CSS style
+    const customStyle = theme ? theme.style : ''
+    // set CSS variables
+    if (theme && theme.props) {
+        var { fill, size } = theme.props
+    }
+    const style = `
+    :host(i-icon) {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    :host(i-icon) span {
+        --size: ${size ? size : '20px'};
+        display: inline-block;
+        width: var(--size);
+        height: var(--size);
+    }
+    :host(i-icon) svg {
+        width: 100%;
+        height: auto;
+    }
+    :host(i-icon) svg g {
+        --fill: ${fill ? fill : 'var(--primary-color)'};
+        fill: hsl(var(--fill));
+    }
+    ${customStyle}
+    `
+    return layout(style)
+}

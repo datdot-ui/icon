@@ -1,7 +1,7 @@
 {
-  "name": "datdot-ui-graphic",
-  "version": "0.0.0",
-  "description": "Render svg as icon element to the DOMElement",
+  "name": "datdot-ui-icon",
+  "version": "1.0.0",
+  "description": "Load svg icon",
   "main": "src/index.js",
   "scripts": {
     "start": "budo demo/demo.js:bundle.js --open --live",
@@ -10,19 +10,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fionataeyang/datdot-ui-graphic.git"
+    "url": "git+https://github.com/fionataeyang/datdot-ui-icon.git"
   },
   "keywords": [
     "svg",
-    "icon"
+    "icon",
+    "datdot-ui"
   ],
   "author": "fionataeyang",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fionataeyang/datdot-ui-graphic/issues"
+    "url": "https://github.com/fionataeyang/datdot-ui-icon/issues"
   },
-  "homepage": "https://github.com/fionataeyang/datdot-ui-graphic#readme",
+  "homepage": "https://github.com/fionataeyang/datdot-ui-icon#readme",
   "dependencies": {
+    "bel": "^6.0.0",
     "budo": "^11.6.4",
     "csjs-inject": "^1.0.1"
   }

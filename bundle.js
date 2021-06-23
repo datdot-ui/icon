@@ -1,30 +1,382 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-const svg = require('..')
+const bel = require('bel')
 const csjs = require('csjs-inject')
+const Icon = require('..')
+// icons
+const iconCheck = Icon({name: 'check', 
+theme: {
+    style: `
+    :host(i-icon) .icon {
+        background-color: var(--color-yellow);
+    }
+    :host(i-icon) svg g { 
+        --fill: var(--color-amaranth-pink)
+    };
+    ` ,
+    props: {
+        //  fill: 'var(--color-persian-rose)',
+        // size: '8rem'
+    }
+}})
+const iconCross = Icon({name: 'cross', theme: { props: { fill: 'var(--color-red)'}}})
+const iconMinus = Icon({name: 'minus', theme: { props: { fill: 'var(--color-yellow)'}}})
+const iconPlus = Icon({name: 'plus', theme: { props: { fill: 'var(--color-green)'}}})
+const iconUp = Icon({name: 'arrow-up', theme: { props: { fill: 'var(--color-purple)'}}})
+const iconDown = Icon({name: 'arrow-down', theme: { props: { fill: 'var(--color-purple)'}}})
+const iconLeft = Icon({name: 'arrow-left', theme: { props: { fill: 'var(--color-purple)'}}})
+const iconRight = Icon({name: 'arrow-right', theme: { props: { fill: 'var(--color-purple)'}}})
+const iconPlay = Icon({name: 'play', theme: { props: { fill: 'var(--color-orange)'}}})
+const iconOption = Icon({name: 'option', theme: { props: { fill: 'var(--color-black)'}}})
+const iconHide = Icon({name: 'hide', theme: { props: { fill: 'var(--color-grey88)'}}})
+const iconShow = Icon({name: 'show', theme: { props: { fill: 'var(--color-blue)'}}})
+const iconTransfer = Icon({name: 'transfer'})
+
+function demoApp () {
+    const app = bel`
+    <div class=${css.app}>
+        <section>
+            <h2>Action</h2>
+            <aside>
+                <span>${iconCheck} check</span>
+                <span>${iconCross} cross</span>
+                <span>${iconMinus} minus</span>
+                <span>${iconPlus} plus</span>
+                <span>${iconPlay} play</span>
+                <span>${iconOption} option</span>
+                <span>${iconHide} hide</span>
+                <span>${iconShow} show</span>
+                <span>${iconTransfer} transfer</span>
+            </aside>
+        </section>
+        <section>
+            <h2>Arrow</h2>
+            <aside>
+                <span>${iconUp} up</span>
+                <span>${iconDown} down</span>
+                <span>${iconLeft} left</span>
+                <span>${iconRight} right</span>
+            </aside>
+        </section>
+    </div>`
+    return app
+}
+
 const css = csjs`
-.icon {}
-.check path {stroke: #009B36;}
-.cancel path {stroke: #FF004E;}
-.minus {}
-.plus {}
-.arrow-down {}
-.arrow-left {}
-.triangle-arrow-left g {fill: #FFA700;}
-.triangle-arrow-left path {stroke: #FFA700;}
-.option g {fill: #888;}
+:root {
+    --b: 0, 0%;
+    --r: 100%, 50%;
+    --color-white: var(--b), 100%;
+    --color-black: var(--b), 0%;
+    --color-dark: 223, 13%, 20%;
+    --color-deep-black: 222, 18%, 11%;
+    --color-blue: 214, var(--r);
+    --color-red: 358, 99%, 53%;
+    --color-amaranth-pink: 331, 86%, 78%;
+    --color-persian-rose: 323, 100%, 56%;
+    --color-orange: 35, 100%, 58%;
+    --color-deep-saffron: 31, 100%, 56%;
+    --color-ultra-red: 348, 96%, 71%;
+    --color-flame: 15, 80%, 50%;
+    --color-verdigris: 180, 54%, 43%;
+    --color-maya-blue: 205, 96%, 72%;
+    --color-slate-blue: 248, 56%, 59%;
+    --color-blue-jeans: 204, 96%, 61%;
+    --color-dodger-blue: 213, 90%, 59%;
+    --color-light-green: 127, 86%, 77%;
+    --color-lime-green: 127, 100%, 40%;
+    --color-slimy-green: 108, 100%, 28%;
+    --color-maximum-blue-green: 180, 54%, 51%;
+    --color-green-pigment: 136, 81%, 34%;
+    --color-yellow: 44, 100%, 55%;
+    --color-chrome-yellow: 39, var(--r);
+    --color-bright-yellow-crayola: 35, 100%, 58%;
+    --color-purple: 283, var(--r);
+    --color-medium-purple: 269, 100%, 70%;
+    --color-grey33: var(--b), 20%;
+    --color-grey66: var(--b), 40%;
+    --color-grey70: var(--b), 44%;
+    --color-grey88: var(--b), 53%;
+    --color-greyA2: var(--b), 64%;
+    --color-greyC3: var(--b), 76%;
+    --color-greyCB: var(--b), 80%;
+    --color-greyD8: var(--b), 85%;
+    --color-greyD9: var(--b), 85%;
+    --color-greyE2: var(--b), 89%;
+    --color-greyEB: var(--b), 92%;
+    --color-greyED: var(--b), 93%;
+    --color-greyEF: var(--b), 94%;
+    --color-greyF2: var(--b), 95%;
+    --color-green: 136, 81%, 34%;
+    --transparent: transparent;
+    --define-font: *---------------------------------------------*;
+    --size12: 1.2rem;
+    --size14: 1.4rem;
+    --size16: 1.6rem;
+    --size18: 1.8rem;
+    --size20: 2rem;
+    --size22: 2.2rem;
+    --size24: 2.4rem;
+    --size26: 2.6rem;
+    --size28: 2.8rem;
+    --size30: 3rem;
+    --size32: 3.2rem;
+    --size36: 3.6rem;
+    --size40: 4rem;
+    --define-primary: *---------------------------------------------*;
+    --primary-color: var(--color-black);
+    --primary-bgColor: var(--color-greyF2);
+    --primary-font: Arial, sens-serif;
+    --primary-font-size: var(--size16);
+}
+.app {}
+aside {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+}
+span {
+    text-align: center;
+}
+span i-icon {
+    padding-bottom: 12px;
+}
 `
-const iconCheck = svg( {css: `${css.icon} ${css.check}`, path: 'assets/check.svg' })
-const iconCancel = svg( {css: `${css.icon} ${css.cancel}`, path: 'assets/cancel.svg' })
-const iconMinus = svg( {css: `${css.icon} ${css.minus}`, path: 'assets/minus.svg' })
-const iconPlus = svg( {css: `${css.icon} ${css.plus}`, path: 'assets/plus.svg' })
-const iconArrowDown = svg( {css: `${css.icon} ${css['arrow-down']}`, path: 'assets/arrow-down.svg' })
-const iconArrowLeft = svg( {css: `${css.icon} ${css['arrow-left']}`, path: 'assets/arrow-left.svg' })
-const iconTriangleArrowLeft = svg( {css: `${css.icon} ${css['triangle-arrow-left']}`, path: 'assets/triangle-arrow-left.svg' })
-const iconOption = svg( {css: `${css.icon} ${css.option}`, path: 'assets/option.svg' })
 
+document.body.append( demoApp() )
+},{"..":26,"bel":3,"csjs-inject":6}],2:[function(require,module,exports){
+var trailingNewlineRegex = /\n[\s]+$/
+var leadingNewlineRegex = /^\n[\s]+/
+var trailingSpaceRegex = /[\s]+$/
+var leadingSpaceRegex = /^[\s]+/
+var multiSpaceRegex = /[\n\s]+/g
 
-document.body.append(iconCheck, iconCancel, iconMinus, iconPlus, iconArrowDown, iconArrowLeft, iconTriangleArrowLeft, iconOption)
-},{"..":22,"csjs-inject":4}],2:[function(require,module,exports){
+var TEXT_TAGS = [
+  'a', 'abbr', 'b', 'bdi', 'bdo', 'br', 'cite', 'data', 'dfn', 'em', 'i',
+  'kbd', 'mark', 'q', 'rp', 'rt', 'rtc', 'ruby', 's', 'amp', 'small', 'span',
+  'strong', 'sub', 'sup', 'time', 'u', 'var', 'wbr'
+]
+
+var VERBATIM_TAGS = [
+  'code', 'pre', 'textarea'
+]
+
+module.exports = function appendChild (el, childs) {
+  if (!Array.isArray(childs)) return
+
+  var nodeName = el.nodeName.toLowerCase()
+
+  var hadText = false
+  var value, leader
+
+  for (var i = 0, len = childs.length; i < len; i++) {
+    var node = childs[i]
+    if (Array.isArray(node)) {
+      appendChild(el, node)
+      continue
+    }
+
+    if (typeof node === 'number' ||
+      typeof node === 'boolean' ||
+      typeof node === 'function' ||
+      node instanceof Date ||
+      node instanceof RegExp) {
+      node = node.toString()
+    }
+
+    var lastChild = el.childNodes[el.childNodes.length - 1]
+
+    // Iterate over text nodes
+    if (typeof node === 'string') {
+      hadText = true
+
+      // If we already had text, append to the existing text
+      if (lastChild && lastChild.nodeName === '#text') {
+        lastChild.nodeValue += node
+
+      // We didn't have a text node yet, create one
+      } else {
+        node = document.createTextNode(node)
+        el.appendChild(node)
+        lastChild = node
+      }
+
+      // If this is the last of the child nodes, make sure we close it out
+      // right
+      if (i === len - 1) {
+        hadText = false
+        // Trim the child text nodes if the current node isn't a
+        // node where whitespace matters.
+        if (TEXT_TAGS.indexOf(nodeName) === -1 &&
+          VERBATIM_TAGS.indexOf(nodeName) === -1) {
+          value = lastChild.nodeValue
+            .replace(leadingNewlineRegex, '')
+            .replace(trailingSpaceRegex, '')
+            .replace(trailingNewlineRegex, '')
+            .replace(multiSpaceRegex, ' ')
+          if (value === '') {
+            el.removeChild(lastChild)
+          } else {
+            lastChild.nodeValue = value
+          }
+        } else if (VERBATIM_TAGS.indexOf(nodeName) === -1) {
+          // The very first node in the list should not have leading
+          // whitespace. Sibling text nodes should have whitespace if there
+          // was any.
+          leader = i === 0 ? '' : ' '
+          value = lastChild.nodeValue
+            .replace(leadingNewlineRegex, leader)
+            .replace(leadingSpaceRegex, ' ')
+            .replace(trailingSpaceRegex, '')
+            .replace(trailingNewlineRegex, '')
+            .replace(multiSpaceRegex, ' ')
+          lastChild.nodeValue = value
+        }
+      }
+
+    // Iterate over DOM nodes
+    } else if (node && node.nodeType) {
+      // If the last node was a text node, make sure it is properly closed out
+      if (hadText) {
+        hadText = false
+
+        // Trim the child text nodes if the current node isn't a
+        // text node or a code node
+        if (TEXT_TAGS.indexOf(nodeName) === -1 &&
+          VERBATIM_TAGS.indexOf(nodeName) === -1) {
+          value = lastChild.nodeValue
+            .replace(leadingNewlineRegex, '')
+            .replace(trailingNewlineRegex, '')
+            .replace(multiSpaceRegex, ' ')
+
+          // Remove empty text nodes, append otherwise
+          if (value === '') {
+            el.removeChild(lastChild)
+          } else {
+            lastChild.nodeValue = value
+          }
+        // Trim the child nodes if the current node is not a node
+        // where all whitespace must be preserved
+        } else if (VERBATIM_TAGS.indexOf(nodeName) === -1) {
+          value = lastChild.nodeValue
+            .replace(leadingSpaceRegex, ' ')
+            .replace(leadingNewlineRegex, '')
+            .replace(trailingNewlineRegex, '')
+            .replace(multiSpaceRegex, ' ')
+          lastChild.nodeValue = value
+        }
+      }
+
+      // Store the last nodename
+      var _nodeName = node.nodeName
+      if (_nodeName) nodeName = _nodeName.toLowerCase()
+
+      // Append the node to the DOM
+      el.appendChild(node)
+    }
+  }
+}
+
+},{}],3:[function(require,module,exports){
+var hyperx = require('hyperx')
+var appendChild = require('./appendChild')
+
+var SVGNS = 'http://www.w3.org/2000/svg'
+var XLINKNS = 'http://www.w3.org/1999/xlink'
+
+var BOOL_PROPS = [
+  'autofocus', 'checked', 'defaultchecked', 'disabled', 'formnovalidate',
+  'indeterminate', 'readonly', 'required', 'selected', 'willvalidate'
+]
+
+var COMMENT_TAG = '!--'
+
+var SVG_TAGS = [
+  'svg', 'altGlyph', 'altGlyphDef', 'altGlyphItem', 'animate', 'animateColor',
+  'animateMotion', 'animateTransform', 'circle', 'clipPath', 'color-profile',
+  'cursor', 'defs', 'desc', 'ellipse', 'feBlend', 'feColorMatrix',
+  'feComponentTransfer', 'feComposite', 'feConvolveMatrix',
+  'feDiffuseLighting', 'feDisplacementMap', 'feDistantLight', 'feFlood',
+  'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR', 'feGaussianBlur', 'feImage',
+  'feMerge', 'feMergeNode', 'feMorphology', 'feOffset', 'fePointLight',
+  'feSpecularLighting', 'feSpotLight', 'feTile', 'feTurbulence', 'filter',
+  'font', 'font-face', 'font-face-format', 'font-face-name', 'font-face-src',
+  'font-face-uri', 'foreignObject', 'g', 'glyph', 'glyphRef', 'hkern', 'image',
+  'line', 'linearGradient', 'marker', 'mask', 'metadata', 'missing-glyph',
+  'mpath', 'path', 'pattern', 'polygon', 'polyline', 'radialGradient', 'rect',
+  'set', 'stop', 'switch', 'symbol', 'text', 'textPath', 'title', 'tref',
+  'tspan', 'use', 'view', 'vkern'
+]
+
+function belCreateElement (tag, props, children) {
+  var el
+
+  // If an svg tag, it needs a namespace
+  if (SVG_TAGS.indexOf(tag) !== -1) {
+    props.namespace = SVGNS
+  }
+
+  // If we are using a namespace
+  var ns = false
+  if (props.namespace) {
+    ns = props.namespace
+    delete props.namespace
+  }
+
+  // Create the element
+  if (ns) {
+    el = document.createElementNS(ns, tag)
+  } else if (tag === COMMENT_TAG) {
+    return document.createComment(props.comment)
+  } else {
+    el = document.createElement(tag)
+  }
+
+  // Create the properties
+  for (var p in props) {
+    if (props.hasOwnProperty(p)) {
+      var key = p.toLowerCase()
+      var val = props[p]
+      // Normalize className
+      if (key === 'classname') {
+        key = 'class'
+        p = 'class'
+      }
+      // The for attribute gets transformed to htmlFor, but we just set as for
+      if (p === 'htmlFor') {
+        p = 'for'
+      }
+      // If a property is boolean, set itself to the key
+      if (BOOL_PROPS.indexOf(key) !== -1) {
+        if (val === 'true') val = key
+        else if (val === 'false') continue
+      }
+      // If a property prefers being set directly vs setAttribute
+      if (key.slice(0, 2) === 'on') {
+        el[p] = val
+      } else {
+        if (ns) {
+          if (p === 'xlink:href') {
+            el.setAttributeNS(XLINKNS, p, val)
+          } else if (/^xmlns($|:)/i.test(p)) {
+            // skip xmlns definitions
+          } else {
+            el.setAttributeNS(null, p, val)
+          }
+        } else {
+          el.setAttribute(p, val)
+        }
+      }
+    }
+  }
+
+  appendChild(el, children)
+  return el
+}
+
+module.exports = hyperx(belCreateElement, {comments: true})
+module.exports.default = module.exports
+module.exports.createElement = belCreateElement
+
+},{"./appendChild":2,"hyperx":24}],4:[function(require,module,exports){
 (function (global){(function (){
 'use strict';
 
@@ -43,12 +395,12 @@ function csjsInserter() {
 module.exports = csjsInserter;
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"csjs":7,"insert-css":21}],3:[function(require,module,exports){
+},{"csjs":9,"insert-css":25}],5:[function(require,module,exports){
 'use strict';
 
 module.exports = require('csjs/get-css');
 
-},{"csjs/get-css":6}],4:[function(require,module,exports){
+},{"csjs/get-css":8}],6:[function(require,module,exports){
 'use strict';
 
 var csjs = require('./csjs');
@@ -57,17 +409,17 @@ module.exports = csjs;
 module.exports.csjs = csjs;
 module.exports.getCss = require('./get-css');
 
-},{"./csjs":2,"./get-css":3}],5:[function(require,module,exports){
+},{"./csjs":4,"./get-css":5}],7:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./lib/csjs');
 
-},{"./lib/csjs":11}],6:[function(require,module,exports){
+},{"./lib/csjs":13}],8:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./lib/get-css');
 
-},{"./lib/get-css":15}],7:[function(require,module,exports){
+},{"./lib/get-css":17}],9:[function(require,module,exports){
 'use strict';
 
 var csjs = require('./csjs');
@@ -77,7 +429,7 @@ module.exports.csjs = csjs;
 module.exports.noScope = csjs({ noscope: true });
 module.exports.getCss = require('./get-css');
 
-},{"./csjs":5,"./get-css":6}],8:[function(require,module,exports){
+},{"./csjs":7,"./get-css":8}],10:[function(require,module,exports){
 'use strict';
 
 /**
@@ -99,7 +451,7 @@ module.exports = function encode(integer) {
   return str;
 };
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 var makeComposition = require('./composition').makeComposition;
@@ -143,7 +495,7 @@ function getClassChain(obj) {
   return acc;
 }
 
-},{"./composition":10}],10:[function(require,module,exports){
+},{"./composition":12}],12:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -223,7 +575,7 @@ function ignoreComposition(values) {
  */
 function Composition() {}
 
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 var extractExtends = require('./css-extract-extends');
@@ -301,7 +653,7 @@ function without(obj, unwanted) {
   }, {});
 }
 
-},{"./build-exports":9,"./composition":10,"./css-extract-extends":12,"./css-key":13,"./extract-exports":14,"./scopeify":20}],12:[function(require,module,exports){
+},{"./build-exports":11,"./composition":12,"./css-extract-extends":14,"./css-key":15,"./extract-exports":16,"./scopeify":22}],14:[function(require,module,exports){
 'use strict';
 
 var makeComposition = require('./composition').makeComposition;
@@ -354,7 +706,7 @@ function getClassName(str) {
   return trimmed[0] === '.' ? trimmed.substr(1) : trimmed;
 }
 
-},{"./composition":10}],13:[function(require,module,exports){
+},{"./composition":12}],15:[function(require,module,exports){
 'use strict';
 
 /**
@@ -364,7 +716,7 @@ function getClassName(str) {
 
 module.exports = ' css ';
 
-},{}],14:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 var regex = require('./regex');
@@ -391,7 +743,7 @@ function getExport(css, regex) {
   return prop;
 }
 
-},{"./regex":17}],15:[function(require,module,exports){
+},{"./regex":19}],17:[function(require,module,exports){
 'use strict';
 
 var cssKey = require('./css-key');
@@ -400,7 +752,7 @@ module.exports = function getCss(csjs) {
   return csjs[cssKey];
 };
 
-},{"./css-key":13}],16:[function(require,module,exports){
+},{"./css-key":15}],18:[function(require,module,exports){
 'use strict';
 
 /**
@@ -418,7 +770,7 @@ module.exports = function hashStr(str) {
   return hash >>> 0;
 };
 
-},{}],17:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 var findClasses = /(\.)(?!\d)([^\s\.,{\[>+~#:)]*)(?![^{]*})/.source;
@@ -434,7 +786,7 @@ module.exports = {
   ignoreComments: ignoreComments,
 };
 
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 var ignoreComments = require('./regex').ignoreComments;
 
 module.exports = replaceAnimations;
@@ -465,7 +817,7 @@ function replaceAnimations(result) {
   return result;
 }
 
-},{"./regex":17}],19:[function(require,module,exports){
+},{"./regex":19}],21:[function(require,module,exports){
 'use strict';
 
 var encode = require('./base62-encode');
@@ -479,7 +831,7 @@ module.exports = function fileScoper(fileSrc) {
   }
 };
 
-},{"./base62-encode":8,"./hash-string":16}],20:[function(require,module,exports){
+},{"./base62-encode":10,"./hash-string":18}],22:[function(require,module,exports){
 'use strict';
 
 var fileScoper = require('./scoped-name');
@@ -520,7 +872,325 @@ function scopify(css, ignores) {
   return replaceAnimations(result);
 }
 
-},{"./regex":17,"./replace-animations":18,"./scoped-name":19}],21:[function(require,module,exports){
+},{"./regex":19,"./replace-animations":20,"./scoped-name":21}],23:[function(require,module,exports){
+module.exports = attributeToProperty
+
+var transform = {
+  'class': 'className',
+  'for': 'htmlFor',
+  'http-equiv': 'httpEquiv'
+}
+
+function attributeToProperty (h) {
+  return function (tagName, attrs, children) {
+    for (var attr in attrs) {
+      if (attr in transform) {
+        attrs[transform[attr]] = attrs[attr]
+        delete attrs[attr]
+      }
+    }
+    return h(tagName, attrs, children)
+  }
+}
+
+},{}],24:[function(require,module,exports){
+var attrToProp = require('hyperscript-attribute-to-property')
+
+var VAR = 0, TEXT = 1, OPEN = 2, CLOSE = 3, ATTR = 4
+var ATTR_KEY = 5, ATTR_KEY_W = 6
+var ATTR_VALUE_W = 7, ATTR_VALUE = 8
+var ATTR_VALUE_SQ = 9, ATTR_VALUE_DQ = 10
+var ATTR_EQ = 11, ATTR_BREAK = 12
+var COMMENT = 13
+
+module.exports = function (h, opts) {
+  if (!opts) opts = {}
+  var concat = opts.concat || function (a, b) {
+    return String(a) + String(b)
+  }
+  if (opts.attrToProp !== false) {
+    h = attrToProp(h)
+  }
+
+  return function (strings) {
+    var state = TEXT, reg = ''
+    var arglen = arguments.length
+    var parts = []
+
+    for (var i = 0; i < strings.length; i++) {
+      if (i < arglen - 1) {
+        var arg = arguments[i+1]
+        var p = parse(strings[i])
+        var xstate = state
+        if (xstate === ATTR_VALUE_DQ) xstate = ATTR_VALUE
+        if (xstate === ATTR_VALUE_SQ) xstate = ATTR_VALUE
+        if (xstate === ATTR_VALUE_W) xstate = ATTR_VALUE
+        if (xstate === ATTR) xstate = ATTR_KEY
+        if (xstate === OPEN) {
+          if (reg === '/') {
+            p.push([ OPEN, '/', arg ])
+            reg = ''
+          } else {
+            p.push([ OPEN, arg ])
+          }
+        } else if (xstate === COMMENT && opts.comments) {
+          reg += String(arg)
+        } else if (xstate !== COMMENT) {
+          p.push([ VAR, xstate, arg ])
+        }
+        parts.push.apply(parts, p)
+      } else parts.push.apply(parts, parse(strings[i]))
+    }
+
+    var tree = [null,{},[]]
+    var stack = [[tree,-1]]
+    for (var i = 0; i < parts.length; i++) {
+      var cur = stack[stack.length-1][0]
+      var p = parts[i], s = p[0]
+      if (s === OPEN && /^\//.test(p[1])) {
+        var ix = stack[stack.length-1][1]
+        if (stack.length > 1) {
+          stack.pop()
+          stack[stack.length-1][0][2][ix] = h(
+            cur[0], cur[1], cur[2].length ? cur[2] : undefined
+          )
+        }
+      } else if (s === OPEN) {
+        var c = [p[1],{},[]]
+        cur[2].push(c)
+        stack.push([c,cur[2].length-1])
+      } else if (s === ATTR_KEY || (s === VAR && p[1] === ATTR_KEY)) {
+        var key = ''
+        var copyKey
+        for (; i < parts.length; i++) {
+          if (parts[i][0] === ATTR_KEY) {
+            key = concat(key, parts[i][1])
+          } else if (parts[i][0] === VAR && parts[i][1] === ATTR_KEY) {
+            if (typeof parts[i][2] === 'object' && !key) {
+              for (copyKey in parts[i][2]) {
+                if (parts[i][2].hasOwnProperty(copyKey) && !cur[1][copyKey]) {
+                  cur[1][copyKey] = parts[i][2][copyKey]
+                }
+              }
+            } else {
+              key = concat(key, parts[i][2])
+            }
+          } else break
+        }
+        if (parts[i][0] === ATTR_EQ) i++
+        var j = i
+        for (; i < parts.length; i++) {
+          if (parts[i][0] === ATTR_VALUE || parts[i][0] === ATTR_KEY) {
+            if (!cur[1][key]) cur[1][key] = strfn(parts[i][1])
+            else parts[i][1]==="" || (cur[1][key] = concat(cur[1][key], parts[i][1]));
+          } else if (parts[i][0] === VAR
+          && (parts[i][1] === ATTR_VALUE || parts[i][1] === ATTR_KEY)) {
+            if (!cur[1][key]) cur[1][key] = strfn(parts[i][2])
+            else parts[i][2]==="" || (cur[1][key] = concat(cur[1][key], parts[i][2]));
+          } else {
+            if (key.length && !cur[1][key] && i === j
+            && (parts[i][0] === CLOSE || parts[i][0] === ATTR_BREAK)) {
+              // https://html.spec.whatwg.org/multipage/infrastructure.html#boolean-attributes
+              // empty string is falsy, not well behaved value in browser
+              cur[1][key] = key.toLowerCase()
+            }
+            if (parts[i][0] === CLOSE) {
+              i--
+            }
+            break
+          }
+        }
+      } else if (s === ATTR_KEY) {
+        cur[1][p[1]] = true
+      } else if (s === VAR && p[1] === ATTR_KEY) {
+        cur[1][p[2]] = true
+      } else if (s === CLOSE) {
+        if (selfClosing(cur[0]) && stack.length) {
+          var ix = stack[stack.length-1][1]
+          stack.pop()
+          stack[stack.length-1][0][2][ix] = h(
+            cur[0], cur[1], cur[2].length ? cur[2] : undefined
+          )
+        }
+      } else if (s === VAR && p[1] === TEXT) {
+        if (p[2] === undefined || p[2] === null) p[2] = ''
+        else if (!p[2]) p[2] = concat('', p[2])
+        if (Array.isArray(p[2][0])) {
+          cur[2].push.apply(cur[2], p[2])
+        } else {
+          cur[2].push(p[2])
+        }
+      } else if (s === TEXT) {
+        cur[2].push(p[1])
+      } else if (s === ATTR_EQ || s === ATTR_BREAK) {
+        // no-op
+      } else {
+        throw new Error('unhandled: ' + s)
+      }
+    }
+
+    if (tree[2].length > 1 && /^\s*$/.test(tree[2][0])) {
+      tree[2].shift()
+    }
+
+    if (tree[2].length > 2
+    || (tree[2].length === 2 && /\S/.test(tree[2][1]))) {
+      if (opts.createFragment) return opts.createFragment(tree[2])
+      throw new Error(
+        'multiple root elements must be wrapped in an enclosing tag'
+      )
+    }
+    if (Array.isArray(tree[2][0]) && typeof tree[2][0][0] === 'string'
+    && Array.isArray(tree[2][0][2])) {
+      tree[2][0] = h(tree[2][0][0], tree[2][0][1], tree[2][0][2])
+    }
+    return tree[2][0]
+
+    function parse (str) {
+      var res = []
+      if (state === ATTR_VALUE_W) state = ATTR
+      for (var i = 0; i < str.length; i++) {
+        var c = str.charAt(i)
+        if (state === TEXT && c === '<') {
+          if (reg.length) res.push([TEXT, reg])
+          reg = ''
+          state = OPEN
+        } else if (c === '>' && !quot(state) && state !== COMMENT) {
+          if (state === OPEN && reg.length) {
+            res.push([OPEN,reg])
+          } else if (state === ATTR_KEY) {
+            res.push([ATTR_KEY,reg])
+          } else if (state === ATTR_VALUE && reg.length) {
+            res.push([ATTR_VALUE,reg])
+          }
+          res.push([CLOSE])
+          reg = ''
+          state = TEXT
+        } else if (state === COMMENT && /-$/.test(reg) && c === '-') {
+          if (opts.comments) {
+            res.push([ATTR_VALUE,reg.substr(0, reg.length - 1)])
+          }
+          reg = ''
+          state = TEXT
+        } else if (state === OPEN && /^!--$/.test(reg)) {
+          if (opts.comments) {
+            res.push([OPEN, reg],[ATTR_KEY,'comment'],[ATTR_EQ])
+          }
+          reg = c
+          state = COMMENT
+        } else if (state === TEXT || state === COMMENT) {
+          reg += c
+        } else if (state === OPEN && c === '/' && reg.length) {
+          // no-op, self closing tag without a space <br/>
+        } else if (state === OPEN && /\s/.test(c)) {
+          if (reg.length) {
+            res.push([OPEN, reg])
+          }
+          reg = ''
+          state = ATTR
+        } else if (state === OPEN) {
+          reg += c
+        } else if (state === ATTR && /[^\s"'=/]/.test(c)) {
+          state = ATTR_KEY
+          reg = c
+        } else if (state === ATTR && /\s/.test(c)) {
+          if (reg.length) res.push([ATTR_KEY,reg])
+          res.push([ATTR_BREAK])
+        } else if (state === ATTR_KEY && /\s/.test(c)) {
+          res.push([ATTR_KEY,reg])
+          reg = ''
+          state = ATTR_KEY_W
+        } else if (state === ATTR_KEY && c === '=') {
+          res.push([ATTR_KEY,reg],[ATTR_EQ])
+          reg = ''
+          state = ATTR_VALUE_W
+        } else if (state === ATTR_KEY) {
+          reg += c
+        } else if ((state === ATTR_KEY_W || state === ATTR) && c === '=') {
+          res.push([ATTR_EQ])
+          state = ATTR_VALUE_W
+        } else if ((state === ATTR_KEY_W || state === ATTR) && !/\s/.test(c)) {
+          res.push([ATTR_BREAK])
+          if (/[\w-]/.test(c)) {
+            reg += c
+            state = ATTR_KEY
+          } else state = ATTR
+        } else if (state === ATTR_VALUE_W && c === '"') {
+          state = ATTR_VALUE_DQ
+        } else if (state === ATTR_VALUE_W && c === "'") {
+          state = ATTR_VALUE_SQ
+        } else if (state === ATTR_VALUE_DQ && c === '"') {
+          res.push([ATTR_VALUE,reg],[ATTR_BREAK])
+          reg = ''
+          state = ATTR
+        } else if (state === ATTR_VALUE_SQ && c === "'") {
+          res.push([ATTR_VALUE,reg],[ATTR_BREAK])
+          reg = ''
+          state = ATTR
+        } else if (state === ATTR_VALUE_W && !/\s/.test(c)) {
+          state = ATTR_VALUE
+          i--
+        } else if (state === ATTR_VALUE && /\s/.test(c)) {
+          res.push([ATTR_VALUE,reg],[ATTR_BREAK])
+          reg = ''
+          state = ATTR
+        } else if (state === ATTR_VALUE || state === ATTR_VALUE_SQ
+        || state === ATTR_VALUE_DQ) {
+          reg += c
+        }
+      }
+      if (state === TEXT && reg.length) {
+        res.push([TEXT,reg])
+        reg = ''
+      } else if (state === ATTR_VALUE && reg.length) {
+        res.push([ATTR_VALUE,reg])
+        reg = ''
+      } else if (state === ATTR_VALUE_DQ && reg.length) {
+        res.push([ATTR_VALUE,reg])
+        reg = ''
+      } else if (state === ATTR_VALUE_SQ && reg.length) {
+        res.push([ATTR_VALUE,reg])
+        reg = ''
+      } else if (state === ATTR_KEY) {
+        res.push([ATTR_KEY,reg])
+        reg = ''
+      }
+      return res
+    }
+  }
+
+  function strfn (x) {
+    if (typeof x === 'function') return x
+    else if (typeof x === 'string') return x
+    else if (x && typeof x === 'object') return x
+    else if (x === null || x === undefined) return x
+    else return concat('', x)
+  }
+}
+
+function quot (state) {
+  return state === ATTR_VALUE_SQ || state === ATTR_VALUE_DQ
+}
+
+var closeRE = RegExp('^(' + [
+  'area', 'base', 'basefont', 'bgsound', 'br', 'col', 'command', 'embed',
+  'frame', 'hr', 'img', 'input', 'isindex', 'keygen', 'link', 'meta', 'param',
+  'source', 'track', 'wbr', '!--',
+  // SVG TAGS
+  'animate', 'animateTransform', 'circle', 'cursor', 'desc', 'ellipse',
+  'feBlend', 'feColorMatrix', 'feComposite',
+  'feConvolveMatrix', 'feDiffuseLighting', 'feDisplacementMap',
+  'feDistantLight', 'feFlood', 'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR',
+  'feGaussianBlur', 'feImage', 'feMergeNode', 'feMorphology',
+  'feOffset', 'fePointLight', 'feSpecularLighting', 'feSpotLight', 'feTile',
+  'feTurbulence', 'font-face-format', 'font-face-name', 'font-face-uri',
+  'glyph', 'glyphRef', 'hkern', 'image', 'line', 'missing-glyph', 'mpath',
+  'path', 'polygon', 'polyline', 'rect', 'set', 'stop', 'tref', 'use', 'view',
+  'vkern'
+].join('|') + ')(?:[\.#][a-zA-Z0-9\u007F-\uFFFF_:-]+)*$')
+function selfClosing (tag) { return closeRE.test(tag) }
+
+},{"hyperscript-attribute-to-property":23}],25:[function(require,module,exports){
 var inserted = {};
 
 module.exports = function (css, options) {
@@ -544,32 +1214,87 @@ module.exports = function (css, options) {
     }
 };
 
-},{}],22:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
+const styleSheet = require('supportCSSStyleSheet')
+const svg = require('svg')
+module.exports = ({name, path, theme}) => {
+    function layout(style) {
+        const icon = document.createElement('i-icon')
+        const root = icon.attachShadow({mode: 'closed'})
+        const url = path ? path : './src/svg'
+        const img = svg(`${url}/${name}.svg`)
+        styleSheet(root, style)
+        root.append(img)
+        return icon
+    }
+    // insert CSS style
+    const customStyle = theme ? theme.style : ''
+    // set CSS variables
+    if (theme && theme.props) {
+        var { fill, size } = theme.props
+    }
+    const style = `
+    :host(i-icon) {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    :host(i-icon) span {
+        --size: ${size ? size : '20px'};
+        display: inline-block;
+        width: var(--size);
+        height: var(--size);
+    }
+    :host(i-icon) svg {
+        width: 100%;
+        height: auto;
+    }
+    :host(i-icon) svg g {
+        --fill: ${fill ? fill : 'var(--primary-color)'};
+        fill: hsl(var(--fill));
+    }
+    ${customStyle}
+    `
+    return layout(style)
+}
+
+},{"supportCSSStyleSheet":27,"svg":28}],27:[function(require,module,exports){
+module.exports = supportCSSStyleSheet
+function supportCSSStyleSheet (root, style) {
+    return (() => {
+        try {
+            const sheet = new CSSStyleSheet()
+            sheet.replaceSync(style)
+            root.adoptedStyleSheets = [sheet]
+            return true 
+        } catch (error) { 
+            const injectStyle = `<style>${style}</style>`
+            root.innerHTML = `${injectStyle}`
+            return false
+        }
+    })()
+}
+},{}],28:[function(require,module,exports){
 module.exports = svg
 
-function svg(opts) {
-    var { css = null, path }  = opts
-    
-    const el = document.createElement('div')
+function svg(path) {
+    const el = document.createElement('span')
     
     async function load(done) {
         const res = await fetch(path)
         const parse = document.createElement('div')
 
         if (res.status == 200) {
-            let graphic = await res.text()
-            parse.innerHTML = graphic
+            let data = await res.text()
+            parse.innerHTML = data
             return done(null, parse.children[0])
         }
         throw new Error(res.status)
     }
-
     load((err, svg) => {
         if (err) console.error(err)
-        if (css) el.className = css
         el.append(svg)
     })
-    
     return el
 }   
 },{}]},{},[1]);
