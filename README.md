@@ -1,2 +1,2 @@
-# datdot-ui-graphic
-Render SVG file to DOMElement
+# datdot-ui-icon
+Load svg icon
