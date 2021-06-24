@@ -31,7 +31,7 @@ const iconPlay = Icon({name: 'play', theme: { props: { fill: 'var(--color-orange
 const iconOption = Icon({name: 'option', theme: { props: { fill: 'var(--color-black)'}}})
 const iconHide = Icon({name: 'hide', theme: { props: { fill: 'var(--color-grey88)'}}})
 const iconShow = Icon({name: 'show', theme: { props: { fill: 'var(--color-blue)'}}})
-const iconTransfer = Icon({name: 'transfer', path: './svg'})
+const iconTransfer = Icon({name: 'transfer', path: './svg', theme: { props: { fillHover: 'var(--color-blue)'}}})
 
 function demoApp () {
     const app = bel`
@@ -47,7 +47,6 @@ function demoApp () {
                 <span>${iconOption} option</span>
                 <span>${iconHide} hide</span>
                 <span>${iconShow} show</span>
-                <span>${iconTransfer} transfer</span>
             </aside>
         </section>
         <section>
@@ -57,6 +56,12 @@ function demoApp () {
                 <span>${iconDown} down</span>
                 <span>${iconLeft} left</span>
                 <span>${iconRight} right</span>
+            </aside>
+        </section>
+        <section>
+            <h2>Button</h2>
+            <aside>
+                <button>${iconTransfer}</button>
             </aside>
         </section>
     </div>`
@@ -140,6 +145,13 @@ span {
 }
 span i-icon {
     padding-bottom: 12px;
+}
+button {
+    padding: 6px 12px;
+    border: 1px solid hsl(var(--color-black));
+    border-radius: 6px;
+    background-color: hsl(var(--color-white));
+    cursor: pointer;
 }
 `
 

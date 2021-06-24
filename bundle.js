@@ -32,7 +32,7 @@ const iconPlay = Icon({name: 'play', theme: { props: { fill: 'var(--color-orange
 const iconOption = Icon({name: 'option', theme: { props: { fill: 'var(--color-black)'}}})
 const iconHide = Icon({name: 'hide', theme: { props: { fill: 'var(--color-grey88)'}}})
 const iconShow = Icon({name: 'show', theme: { props: { fill: 'var(--color-blue)'}}})
-const iconTransfer = Icon({name: 'transfer', path: './svg'})
+const iconTransfer = Icon({name: 'transfer', path: './svg', theme: { props: { fillHover: 'var(--color-blue)'}}})
 
 function demoApp () {
     const app = bel`
@@ -48,7 +48,6 @@ function demoApp () {
                 <span>${iconOption} option</span>
                 <span>${iconHide} hide</span>
                 <span>${iconShow} show</span>
-                <span>${iconTransfer} transfer</span>
             </aside>
         </section>
         <section>
@@ -58,6 +57,12 @@ function demoApp () {
                 <span>${iconDown} down</span>
                 <span>${iconLeft} left</span>
                 <span>${iconRight} right</span>
+            </aside>
+        </section>
+        <section>
+            <h2>Button</h2>
+            <aside>
+                <button>${iconTransfer}</button>
             </aside>
         </section>
     </div>`
@@ -141,6 +146,13 @@ span {
 }
 span i-icon {
     padding-bottom: 12px;
+}
+button {
+    padding: 6px 12px;
+    border: 1px solid hsl(var(--color-black));
+    border-radius: 6px;
+    background-color: hsl(var(--color-white));
+    cursor: pointer;
 }
 `
 
@@ -1226,35 +1238,46 @@ module.exports = ({name, path, theme}) => {
         const root = icon.attachShadow({mode: 'open'})
         const url = path ? path : './src/svg'
         const img = svg(`${url}/${name}.svg`)
+        const slot = document.createElement('slot')
+        slot.name = 'icon'
         styleSheet(root, style)
-        root.append(img)
+        slot.append(img)
+        root.append(slot)
         return icon
     }
     // insert CSS style
     const customStyle = theme ? theme.style : ''
     // set CSS variables
     if (theme && theme.props) {
-        var { fill, size } = theme.props
+        var { fill, fillHover, size } = theme.props
     }
     const style = `
     :host(i-icon) {
+        --size: ${size ? size : '20px'};
+        --fill: ${fill ? fill : 'var(--primary-color)'};
+        --fillHover: ${fillHover ? fillHover : 'var(--color-greyA2)'};
+        display: block;
+    }
+    slot[name='icon'] {
         display: grid;
         justify-content: center;
         align-items: center;
     }
-    :host(i-icon) span {
-        --size: ${size ? size : '20px'};
-        display: inline-block;
+    slot[name='icon'] span {
+        display: block;
         width: var(--size);
         height: var(--size);
     }
-    :host(i-icon) svg {
+    slot[name='icon'] svg {
         width: 100%;
         height: auto;
     }
-    :host(i-icon) svg g {
-        --fill: ${fill ? fill : 'var(--primary-color)'};
+    slot[name='icon'] g {
         fill: hsl(var(--fill));
+        transition: fill .3s ease-in-out;
+    }
+    slot[name='icon']:hover g {
+        fill: hsl(var(--fillHover));
     }
     ${customStyle}
     `
