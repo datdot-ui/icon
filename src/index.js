@@ -23,7 +23,6 @@ module.exports = ({name, path, theme}) => {
     :host(i-icon) {
         --size: ${size ? size : '20px'};
         --fill: ${fill ? fill : 'var(--primary-color)'};
-        --fillHover: ${fillHover ? fillHover : 'var(--color-greyA2)'};
         display: block;
     }
     slot[name='icon'] {
@@ -43,9 +42,6 @@ module.exports = ({name, path, theme}) => {
     slot[name='icon'] g {
         fill: hsl(var(--fill));
         transition: fill .3s ease-in-out;
-    }
-    slot[name='icon']:hover g {
-        fill: hsl(var(--fillHover));
     }
     ${customStyle}
     `
