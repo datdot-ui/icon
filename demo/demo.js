@@ -5,11 +5,14 @@ const Icon = require('..')
 const iconCheck = Icon({name: 'check', 
 theme: {
     style: `
-    :host(i-icon) .icon {
-        background-color: var(--color-yellow);
+    :host(i-icon) span {
+        padding: 4px;
+        background-color: hsl(var(--color-greyF2));
     }
     :host(i-icon) svg g { 
-        --fill: var(--color-amaranth-pink)
+        --fill: var(--color-amaranth-pink);
+        stroke-width: 1;
+        stroke: hsl(var(--color-amaranth-pink));
     };
     ` ,
     props: {
@@ -28,7 +31,7 @@ const iconPlay = Icon({name: 'play', theme: { props: { fill: 'var(--color-orange
 const iconOption = Icon({name: 'option', theme: { props: { fill: 'var(--color-black)'}}})
 const iconHide = Icon({name: 'hide', theme: { props: { fill: 'var(--color-grey88)'}}})
 const iconShow = Icon({name: 'show', theme: { props: { fill: 'var(--color-blue)'}}})
-const iconTransfer = Icon({name: 'transfer'})
+const iconTransfer = Icon({name: 'transfer', path: './svg'})
 
 function demoApp () {
     const app = bel`
