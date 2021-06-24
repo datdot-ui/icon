@@ -153,6 +153,12 @@ button {
     background-color: hsl(var(--color-white));
     cursor: pointer;
 }
+button:hover {
+    background-color: hsl(var(--color-greyA2));
+}
+button:hover i-icon g {
+    fill: hsl(var(--color-white));
+} 
 `
 
 document.body.append( demoApp() )

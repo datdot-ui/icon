@@ -154,6 +154,12 @@ button {
     background-color: hsl(var(--color-white));
     cursor: pointer;
 }
+button:hover {
+    background-color: hsl(var(--color-greyA2));
+}
+button:hover i-icon g {
+    fill: hsl(var(--color-white));
+} 
 `
 
 document.body.append( demoApp() )
@@ -1238,46 +1244,36 @@ module.exports = ({name, path, theme}) => {
         const root = icon.attachShadow({mode: 'open'})
         const url = path ? path : './src/svg'
         const img = svg(`${url}/${name}.svg`)
-        const slot = document.createElement('slot')
-        slot.name = 'icon'
         styleSheet(root, style)
-        slot.append(img)
-        root.append(slot)
+        root.append(img)
         return icon
     }
     // insert CSS style
     const customStyle = theme ? theme.style : ''
     // set CSS variables
     if (theme && theme.props) {
-        var { fill, fillHover, size } = theme.props
+        var { fill, size } = theme.props
     }
     const style = `
     :host(i-icon) {
-        --size: ${size ? size : '20px'};
-        --fill: ${fill ? fill : 'var(--primary-color)'};
-        --fillHover: ${fillHover ? fillHover : 'var(--color-greyA2)'};
-        display: block;
-    }
-    slot[name='icon'] {
         display: grid;
         justify-content: center;
         align-items: center;
     }
-    slot[name='icon'] span {
+    :host(i-icon) span {
+        --size: ${size ? size : '20px'};
         display: block;
         width: var(--size);
         height: var(--size);
     }
-    slot[name='icon'] svg {
+    :host(i-icon) svg {
         width: 100%;
         height: auto;
     }
-    slot[name='icon'] g {
+    :host(i-icon) g {
+        --fill: ${fill ? fill : 'var(--primary-color)'};
         fill: hsl(var(--fill));
         transition: fill .3s ease-in-out;
-    }
-    slot[name='icon']:hover g {
-        fill: hsl(var(--fillHover));
     }
     ${customStyle}
     `
