@@ -1223,7 +1223,7 @@ const svg = require('svg')
 module.exports = ({name, path, theme}) => {
     function layout(style) {
         const icon = document.createElement('i-icon')
-        const root = icon.attachShadow({mode: 'closed'})
+        const root = icon.attachShadow({mode: 'open'})
         const url = path ? path : './src/svg'
         const img = svg(`${url}/${name}.svg`)
         styleSheet(root, style)
