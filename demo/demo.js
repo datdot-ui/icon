@@ -31,7 +31,7 @@ const iconPlay = Icon({name: 'play', theme: { props: { fill: 'var(--color-orange
 const iconOption = Icon({name: 'option', theme: { props: { fill: 'var(--color-black)'}}})
 const iconHide = Icon({name: 'hide', theme: { props: { fill: 'var(--color-grey88)'}}})
 const iconShow = Icon({name: 'show', theme: { props: { fill: 'var(--color-blue)'}}})
-const iconTransfer = Icon({name: 'transfer', path: './svg', theme: { props: { fillHover: 'var(--color-blue)'}}})
+const iconTransfer = Icon({name: 'transfer', isRoot: false, path: './svg'})
 
 function demoApp () {
     const app = bel`
@@ -115,20 +115,6 @@ const css = csjs`
     --color-greyF2: var(--b), 95%;
     --color-green: 136, 81%, 34%;
     --transparent: transparent;
-    --define-font: *---------------------------------------------*;
-    --size12: 1.2rem;
-    --size14: 1.4rem;
-    --size16: 1.6rem;
-    --size18: 1.8rem;
-    --size20: 2rem;
-    --size22: 2.2rem;
-    --size24: 2.4rem;
-    --size26: 2.6rem;
-    --size28: 2.8rem;
-    --size30: 3rem;
-    --size32: 3.2rem;
-    --size36: 3.6rem;
-    --size40: 4rem;
     --define-primary: *---------------------------------------------*;
     --primary-color: var(--color-black);
     --primary-bgColor: var(--color-greyF2);
@@ -152,13 +138,18 @@ button {
     border-radius: 6px;
     background-color: hsl(var(--color-white));
     cursor: pointer;
+    transition: border-color .4s ease-in-out;
+}
+button svg g {
+    fill: hsl(var(--color-black));
+    transition: fill .4s ease-in-out;
 }
 button:hover {
-    background-color: hsl(var(--color-greyA2));
+    border-color: hsl(var(--color-flame));
 }
-button:hover i-icon g {
-    fill: hsl(var(--color-white));
-} 
+button:hover svg g {
+    fill: hsl(var(--color-flame));
+}
 `
 
 document.body.append( demoApp() )
