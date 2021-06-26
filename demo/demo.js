@@ -28,25 +28,103 @@ const iconDown = Icon({name: 'arrow-down', theme: { props: { fill: 'var(--color-
 const iconLeft = Icon({name: 'arrow-left', theme: { props: { fill: 'var(--color-purple)'}}})
 const iconRight = Icon({name: 'arrow-right', theme: { props: { fill: 'var(--color-purple)'}}})
 const iconPlay = Icon({name: 'play', theme: { props: { fill: 'var(--color-orange)'}}})
+const iconPause = Icon({name: 'pause', theme: { props: { fill: 'var(--color-orange)'}}})
+const iconStop = Icon({name: 'stop', theme: { props: { fill: 'var(--color-orange)'}}})
 const iconOption = Icon({name: 'option', theme: { props: { fill: 'var(--color-black)'}}})
 const iconHide = Icon({name: 'hide', theme: { props: { fill: 'var(--color-grey88)'}}})
 const iconShow = Icon({name: 'show', theme: { props: { fill: 'var(--color-blue)'}}})
 const iconTransfer = Icon({name: 'transfer', isRoot: false, path: './svg'})
+const iconEdit = Icon({name: 'edit'})
+const iconImport = Icon({name: 'import'})
+const iconFilter = Icon({name: 'filter'})
+const iconHelp = Icon({name: 'help'})
+const iconLineChart = Icon({name: 'linechart'})
+const iconTreemap = Icon({name: 'treemap'})
+const iconSortUp = Icon({name: 'sort-up'})
+const iconSortDown = Icon({name: 'sort-down'})
+const iconPin = Icon({name: 'pin'})
+const iconList = Icon({name: 'list', })
+const iconRemove = Icon({name: 'remove'})
+const iconTrash = Icon({name: 'trash'})
+const iconSearch = Icon({name: 'search'})
+const iconActivity = Icon({name: 'activity'})
+const iconAction = Icon({name: 'action'})
+const iconPlanList = Icon({name: 'plan-list'})
+// sub-step
+const iconStepConfirm = Icon({name: 'step-confirm', theme: { props: { size: '30px' }} })
+const iconStepCancel = Icon({name: 'step-cancel', theme: { props: { size: '30px' }} })
+// transfer event
+const iconEventTransfer = Icon({name: 'event-transfer', theme: { props: { size: '40px' }} })
+const iconEventPending = Icon({name: 'event-pending', theme: { props: { size: '40px' }} })
+const iconEventCancel = Icon({name: 'event-cancel', theme: { props: { size: '40px' }} })
+const iconEventTo = Icon({name: 'event-to', theme: { props: { size: '40px' }} })
+// notify
+const iconWarning = Icon({name: 'warning', theme: { props: { size: '40px' }}})
+const iconNotice = Icon({name: 'notice', theme: { props: { size: '40px' }}})
 
 function demoApp () {
     const app = bel`
     <div class=${css.app}>
         <section>
-            <h2>Action</h2>
+            <h2>Action bar</h2>
+            <aside>
+                <span>${iconActivity} activity</span>
+                <span>${iconPlanList} plan-list</span>
+                <span>${iconLineChart} linechart</span>
+                <span>${iconTreemap} treemap</span>
+                <span>${iconSearch} search</span>
+                <span>${iconSortUp} sort-up</span>
+                <span>${iconSortDown} sort-down</span>
+                <span>${iconFilter} filter</span>
+                <span>${iconAction} trash</span>
+                <span>${iconHelp} filter</span>
+                <span>${iconList} list</span>
+            </aside>
+        </section>
+        <section>
+        <h2>Plan action</h2>
+            <aside>
+                <span>${iconPlay} play</span>
+                <span>${iconPause} pause</span>
+                <span>${iconStop} stop</span>
+            </aside>
+        </section>
+        <section>
+            <h2>Actions</h2>
             <aside>
                 <span>${iconCheck} check</span>
                 <span>${iconCross} cross</span>
                 <span>${iconMinus} minus</span>
                 <span>${iconPlus} plus</span>
-                <span>${iconPlay} play</span>
                 <span>${iconOption} option</span>
-                <span>${iconHide} hide</span>
+                <span>${iconEdit} edit</span>
+                <span>${iconImport} import</span>
+                <span>${iconPin} pin</span>
+                <span>${iconRemove} remove</span>
+                <span>${iconTrash} trash</span>
+            </aside>
+        </section>
+        <section>
+            <h2>Sub step</h2>
+            <aside>
+                <span>${iconStepConfirm} step-confirm</span>
+                <span>${iconStepCancel} step-cancel</span>
+            </aside>
+        </section>
+        <section>
+            <h2>Show password</h2>
+            <aside>
                 <span>${iconShow} show</span>
+                <span>${iconHide} hide</span>
+            </aside>
+        </section>  
+        <section>
+            <h2>Activity event</h2>
+            <aside>
+                <span>${iconEventTransfer} event-transfer</span>
+                <span>${iconEventPending} event-pending</span>
+                <span>${iconEventCancel} event-cancel</span>
+                <span>${iconEventTo} event-to</span>
             </aside>
         </section>
         <section>
@@ -56,6 +134,13 @@ function demoApp () {
                 <span>${iconDown} down</span>
                 <span>${iconLeft} left</span>
                 <span>${iconRight} right</span>
+            </aside>
+        </section>
+        <section>
+            <h2>Notify</h2>
+            <aside>
+                <span>${iconWarning} warning</span>
+                <span>${iconNotice} notice</span>
             </aside>
         </section>
         <section>
@@ -123,10 +208,11 @@ const css = csjs`
 }
 .app {}
 aside {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+    display: flex;
+    white-space: nowrap;
 }
 span {
+    margin-right: 15px;
     text-align: center;
 }
 span i-icon {

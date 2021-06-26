@@ -28,7 +28,7 @@ module.exports = ({name, path, isRoot = true, theme}) => {
     }
     const style = `
     :host(i-icon) {
-        --size: ${size ? size : '20px'};
+        --size: ${size ? size : '24px'};
         --fill: ${fill ? fill : 'var(--primary-color)'};
         display: block;
     }
