@@ -1,23 +1,23 @@
 const styleSheet = require('supportCSSStyleSheet')
 const svg = require('svg')
 
-module.exports = ({name, path, isRoot = true, theme}) => {
+module.exports = ({name, path, isShadow = true, theme}) => {
     const url = path ? path : './src/svg'
     const symbol = svg(`${url}/${name}.svg`)
     // if not use shadowDOM return icon that support hover effect
-    if (!isRoot) return symbol
+    if (!isShadow) return symbol
 
     /* use closed mode of shadwoDOM is not allowed to catch shadowDOM elemnt, 
        and any element cannot support customizing :hover style when parent triggered hover
     */
     function layout(style) {
         const icon = document.createElement('i-icon')
-        const root = icon.attachShadow({mode: 'closed'})
+        const shadow = icon.attachShadow({mode: 'closed'})
         const slot = document.createElement('slot')
         slot.name = 'icon'
-        styleSheet(root, style)
+        styleSheet(shadow, style)
         slot.append(symbol)
-        root.append(slot)
+        shadow.append(slot)
         return icon
     }
     // insert CSS style

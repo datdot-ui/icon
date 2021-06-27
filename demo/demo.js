@@ -33,7 +33,7 @@ const iconStop = Icon({name: 'stop', theme: { props: { fill: 'var(--color-orange
 const iconOption = Icon({name: 'option', theme: { props: { fill: 'var(--color-black)'}}})
 const iconHide = Icon({name: 'hide', theme: { props: { fill: 'var(--color-grey88)'}}})
 const iconShow = Icon({name: 'show', theme: { props: { fill: 'var(--color-blue)'}}})
-const iconTransfer = Icon({name: 'transfer', isRoot: false, path: './svg'})
+const iconTransfer = Icon({name: 'transfer', isShadow: false, path: './svg'})
 const iconEdit = Icon({name: 'edit'})
 const iconImport = Icon({name: 'import'})
 const iconFilter = Icon({name: 'filter'})
@@ -225,6 +225,9 @@ button {
     background-color: hsl(var(--color-white));
     cursor: pointer;
     transition: border-color .4s ease-in-out;
+}
+button span {
+    margin-right: 0;
 }
 button svg g {
     fill: hsl(var(--color-black));
