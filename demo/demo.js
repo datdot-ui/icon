@@ -1,9 +1,10 @@
 const bel = require('bel')
 const csjs = require('csjs-inject')
-const Icon = require('..')
+const head = require('head')()
+const icon = require('..')
 // icons
-const iconCheck = Icon({name: 'check', 
-isShadow: true,
+const icon_check = icon({name: 'check', 
+is_shadow: true,
 theme: {
     style: `
     :host(i-icon) span {
@@ -21,133 +22,133 @@ theme: {
         // size: '8rem'
     }
 }})
-const iconCross = Icon({name: 'cross', isShadow: true, theme: { props: { fill: 'var(--color-red)'}}})
-const iconMinus = Icon({name: 'minus', isShadow: true, theme: { props: { fill: 'var(--color-yellow)'}}})
-const iconPlus = Icon({name: 'plus', isShadow: true, theme: { props: { fill: 'var(--color-green)'}}})
-const iconUp = Icon({name: 'arrow-up', isShadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
-const iconDown = Icon({name: 'arrow-down', isShadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
-const iconLeft = Icon({name: 'arrow-left', isShadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
-const iconRight = Icon({name: 'arrow-right', isShadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
-const iconPlay = Icon({name: 'play', isShadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
-const iconPause = Icon({name: 'pause', isShadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
-const iconStop = Icon({name: 'stop', isShadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
-const iconOption = Icon({name: 'option', isShadow: true, theme: { props: { fill: 'var(--color-black)'}}})
-const iconHide = Icon({name: 'hide', isShadow: true, theme: { props: { fill: 'var(--color-grey88)'}}})
-const iconShow = Icon({name: 'show', isShadow: true, theme: { props: { fill: 'var(--color-blue)'}}})
-const iconTransfer = Icon({name: 'transfer', path: './svg'})
-const iconEdit = Icon({name: 'edit', isShadow: true})
-const iconImport = Icon({name: 'import', isShadow: true})
-const iconFilter = Icon({name: 'filter', isShadow: true})
-const iconHelp = Icon({name: 'help', isShadow: true})
-const iconLineChart = Icon({name: 'linechart', isShadow: true})
-const iconTreemap = Icon({name: 'treemap', isShadow: true})
-const iconSortUp = Icon({name: 'sort-up', isShadow: true})
-const iconSortDown = Icon({name: 'sort-down', isShadow: true})
-const iconPin = Icon({name: 'pin', isShadow: true})
-const iconList = Icon({name: 'list', isShadow: true})
-const iconRemove = Icon({name: 'remove', isShadow: true})
-const iconTrash = Icon({name: 'trash', isShadow: true})
-const iconSearch = Icon({name: 'search', isShadow: true})
-const iconActivity = Icon({name: 'activity', isShadow: true})
-const iconAction = Icon({name: 'action', isShadow: true})
-const iconPlanList = Icon({name: 'plan-list', isShadow: true})
+const icon_cross = icon({name: 'cross', is_shadow: true, theme: { props: { fill: 'var(--color-red)'}}})
+const icon_minus = icon({name: 'minus', is_shadow: true, theme: { props: { fill: 'var(--color-yellow)'}}})
+const iconPlus = icon({name: 'plus', is_shadow: true, theme: { props: { fill: 'var(--color-green)'}}})
+const icon_up = icon({name: 'arrow-up', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
+const icon_down = icon({name: 'arrow-down', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
+const icon_left = icon({name: 'arrow-left', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
+const icon_right= icon({name: 'arrow-right', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
+const icon_play = icon({name: 'play', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
+const icon_pause = icon({name: 'pause', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
+const icon_stop = icon({name: 'stop', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
+const icon_option = icon({name: 'option', is_shadow: true, theme: { props: { fill: 'var(--color-black)'}}})
+const icon_hide = icon({name: 'hide', is_shadow: true, theme: { props: { fill: 'var(--color-grey88)'}}})
+const icon_show = icon({name: 'show', is_shadow: true, theme: { props: { fill: 'var(--color-blue)'}}})
+const icon_transfer = icon({name: 'transfer', path: './svg'})
+const icon_edit = icon({name: 'edit', is_shadow: true})
+const icon_import = icon({name: 'import', is_shadow: true})
+const icon_filter = icon({name: 'filter', is_shadow: true})
+const icon_help = icon({name: 'help', is_shadow: true})
+const icon_linechart = icon({name: 'linechart', is_shadow: true})
+const icon_treemap = icon({name: 'treemap', is_shadow: true})
+const icon_sort_up = icon({name: 'sort-up', is_shadow: true})
+const icon_sort_down = icon({name: 'sort-down', is_shadow: true})
+const icon_pin = icon({name: 'pin', is_shadow: true})
+const iconList = icon({name: 'list', is_shadow: true})
+const icon_remove = icon({name: 'remove', is_shadow: true})
+const icon_trash = icon({name: 'trash', is_shadow: true})
+const icon_search = icon({name: 'search', is_shadow: true})
+const icon_activity = icon({name: 'activity', is_shadow: true})
+const icon_action = icon({name: 'action', is_shadow: true})
+const icon_plan_list = icon({name: 'plan-list', is_shadow: true})
 // sub-step
-const iconStepConfirm = Icon({name: 'step-confirm', isShadow: true, theme: { props: { size: '30px' }} })
-const iconStepCancel = Icon({name: 'step-cancel', isShadow: true, theme: { props: { size: '30px' }} })
+const icon_step_confirm = icon({name: 'step-confirm', is_shadow: true, theme: { props: { size: '30px' }} })
+const icon_step_cancel = icon({name: 'step-cancel', is_shadow: true, theme: { props: { size: '30px' }} })
 // transfer event
-const iconEventTransfer = Icon({name: 'event-transfer', isShadow: true, theme: { props: { size: '40px' }} })
-const iconEventPending = Icon({name: 'event-pending', isShadow: true, theme: { props: { size: '40px' }} })
-const iconEventCancel = Icon({name: 'event-cancel', isShadow: true, theme: { props: { size: '40px' }} })
-const iconEventTo = Icon({name: 'event-to', isShadow: true, theme: { props: { size: '40px' }} })
+const icon_event_transfer = icon({name: 'event-transfer', is_shadow: true, theme: { props: { size: '40px' }} })
+const icon_event_pending = icon({name: 'event-pending', is_shadow: true, theme: { props: { size: '40px' }} })
+const icon_event_cancel = icon({name: 'event-cancel', is_shadow: true, theme: { props: { size: '40px' }} })
+const icon_event_to = icon({name: 'event-to', is_shadow: true, theme: { props: { size: '40px' }} })
 // notify
-const iconWarning = Icon({name: 'warning', isShadow: true, theme: { props: { size: '40px' }}})
-const iconNotice = Icon({name: 'notice', isShadow: true, theme: { props: { size: '40px' }}})
+const icon_warning = icon({name: 'warning', is_shadow: true, theme: { props: { size: '40px' }}})
+const icon_notice = icon({name: 'notice', is_shadow: true, theme: { props: { size: '40px' }}})
 
-function demoApp () {
+function demo () {
     const app = bel`
     <div class=${css.app}>
         <section>
             <h2>Action bar</h2>
             <aside>
-                <span>${iconActivity} activity</span>
-                <span>${iconPlanList} plan-list</span>
-                <span>${iconLineChart} linechart</span>
-                <span>${iconTreemap} treemap</span>
-                <span>${iconSearch} search</span>
-                <span>${iconSortUp} sort-up</span>
-                <span>${iconSortDown} sort-down</span>
-                <span>${iconFilter} filter</span>
-                <span>${iconAction} trash</span>
-                <span>${iconHelp} filter</span>
+                <span>${icon_activity} activity</span>
+                <span>${icon_plan_list} plan-list</span>
+                <span>${icon_linechart} linechart</span>
+                <span>${icon_treemap} treemap</span>
+                <span>${icon_search} search</span>
+                <span>${icon_sort_up} sort-up</span>
+                <span>${icon_sort_down} sort-down</span>
+                <span>${icon_filter} filter</span>
+                <span>${icon_action} trash</span>
+                <span>${icon_help} filter</span>
                 <span>${iconList} list</span>
             </aside>
         </section>
         <section>
         <h2>Plan action</h2>
             <aside>
-                <span>${iconPlay} play</span>
-                <span>${iconPause} pause</span>
-                <span>${iconStop} stop</span>
+                <span>${icon_play} play</span>
+                <span>${icon_pause} pause</span>
+                <span>${icon_stop} stop</span>
             </aside>
         </section>
         <section>
             <h2>Actions</h2>
             <aside>
-                <span>${iconCheck} check</span>
-                <span>${iconCross} cross</span>
-                <span>${iconMinus} minus</span>
+                <span>${icon_check} check</span>
+                <span>${icon_cross} cross</span>
+                <span>${icon_minus} minus</span>
                 <span>${iconPlus} plus</span>
-                <span>${iconOption} option</span>
-                <span>${iconEdit} edit</span>
-                <span>${iconImport} import</span>
-                <span>${iconPin} pin</span>
-                <span>${iconRemove} remove</span>
-                <span>${iconTrash} trash</span>
+                <span>${icon_option} option</span>
+                <span>${icon_edit} edit</span>
+                <span>${icon_import} import</span>
+                <span>${icon_pin} pin</span>
+                <span>${icon_remove} remove</span>
+                <span>${icon_trash} trash</span>
             </aside>
         </section>
         <section>
             <h2>Sub step</h2>
             <aside>
-                <span>${iconStepConfirm} step-confirm</span>
-                <span>${iconStepCancel} step-cancel</span>
+                <span>${icon_step_confirm} step-confirm</span>
+                <span>${icon_step_cancel} step-cancel</span>
             </aside>
         </section>
         <section>
             <h2>Show password</h2>
             <aside>
-                <span>${iconShow} show</span>
-                <span>${iconHide} hide</span>
+                <span>${icon_show} show</span>
+                <span>${icon_hide} hide</span>
             </aside>
         </section>  
         <section>
             <h2>Activity event</h2>
             <aside>
-                <span>${iconEventTransfer} event-transfer</span>
-                <span>${iconEventPending} event-pending</span>
-                <span>${iconEventCancel} event-cancel</span>
-                <span>${iconEventTo} event-to</span>
+                <span>${icon_event_transfer} event-transfer</span>
+                <span>${icon_event_pending} event-pending</span>
+                <span>${icon_event_cancel} event-cancel</span>
+                <span>${icon_event_to} event-to</span>
             </aside>
         </section>
         <section>
             <h2>Arrow</h2>
             <aside>
-                <span>${iconUp} up</span>
-                <span>${iconDown} down</span>
-                <span>${iconLeft} left</span>
-                <span>${iconRight} right</span>
+                <span>${icon_up} up</span>
+                <span>${icon_down} down</span>
+                <span>${icon_left} left</span>
+                <span>${icon_right} right</span>
             </aside>
         </section>
         <section>
             <h2>Notify</h2>
             <aside>
-                <span>${iconWarning} warning</span>
-                <span>${iconNotice} notice</span>
+                <span>${icon_warning} warning</span>
+                <span>${icon_notice} notice</span>
             </aside>
         </section>
         <section>
             <h2>Button</h2>
             <aside>
-                <button>${iconTransfer}</button>
+                <button>${icon_transfer}</button>
             </aside>
         </section>
     </div>`
@@ -242,4 +243,4 @@ button:hover svg g {
 }
 `
 
-document.body.append( demoApp() )
+document.body.append( demo() )

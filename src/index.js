@@ -1,22 +1,22 @@
-const styleSheet = require('supportCSSStyleSheet')
+const style_sheet = require('support-style-sheet')
 const svg = require('svg')
 
-module.exports = ({name, path, isShadow = false, theme}) => {
+module.exports = ({name, path, is_shadow = false, theme}) => {
     const url = path ? path : './src/svg'
     const symbol = svg(`${url}/${name}.svg`)
-    if (isShadow) {
-        function layout(style) {
+    if (is_shadow) {
+        function layout (style) {
             const icon = document.createElement('i-icon')
             const shadow = icon.attachShadow({mode: 'closed'})
             const slot = document.createElement('slot')
             slot.name = 'icon'
-            styleSheet(shadow, style)
+            style_sheet(shadow, style)
             slot.append(symbol)
             shadow.append(slot)
             return icon
         }
         // insert CSS style
-        const customStyle = theme ? theme.style : ''
+        const custom_style = theme ? theme.style : ''
         // set CSS variables
         if (theme && theme.props) {
             var { fill, size } = theme.props
@@ -45,7 +45,7 @@ module.exports = ({name, path, isShadow = false, theme}) => {
             fill: hsl(var(--fill));
             transition: fill .3s ease-in-out;
         }
-        ${customStyle}
+        ${custom_style}
         `
         return layout(style)
     }

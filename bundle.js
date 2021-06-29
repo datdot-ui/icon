@@ -1,9 +1,11 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 const bel = require('bel')
 const csjs = require('csjs-inject')
-const Icon = require('..')
+const head = require('head')()
+const icon = require('..')
 // icons
-const iconCheck = Icon({name: 'check', 
+const icon_check = icon({name: 'check', 
+is_shadow: true,
 theme: {
     style: `
     :host(i-icon) span {
@@ -21,133 +23,133 @@ theme: {
         // size: '8rem'
     }
 }})
-const iconCross = Icon({name: 'cross', theme: { props: { fill: 'var(--color-red)'}}})
-const iconMinus = Icon({name: 'minus', theme: { props: { fill: 'var(--color-yellow)'}}})
-const iconPlus = Icon({name: 'plus', theme: { props: { fill: 'var(--color-green)'}}})
-const iconUp = Icon({name: 'arrow-up', theme: { props: { fill: 'var(--color-purple)'}}})
-const iconDown = Icon({name: 'arrow-down', theme: { props: { fill: 'var(--color-purple)'}}})
-const iconLeft = Icon({name: 'arrow-left', theme: { props: { fill: 'var(--color-purple)'}}})
-const iconRight = Icon({name: 'arrow-right', theme: { props: { fill: 'var(--color-purple)'}}})
-const iconPlay = Icon({name: 'play', theme: { props: { fill: 'var(--color-orange)'}}})
-const iconPause = Icon({name: 'pause', theme: { props: { fill: 'var(--color-orange)'}}})
-const iconStop = Icon({name: 'stop', theme: { props: { fill: 'var(--color-orange)'}}})
-const iconOption = Icon({name: 'option', theme: { props: { fill: 'var(--color-black)'}}})
-const iconHide = Icon({name: 'hide', theme: { props: { fill: 'var(--color-grey88)'}}})
-const iconShow = Icon({name: 'show', theme: { props: { fill: 'var(--color-blue)'}}})
-const iconTransfer = Icon({name: 'transfer', isShadow: false, path: './svg'})
-const iconEdit = Icon({name: 'edit'})
-const iconImport = Icon({name: 'import'})
-const iconFilter = Icon({name: 'filter'})
-const iconHelp = Icon({name: 'help'})
-const iconLineChart = Icon({name: 'linechart'})
-const iconTreemap = Icon({name: 'treemap'})
-const iconSortUp = Icon({name: 'sort-up'})
-const iconSortDown = Icon({name: 'sort-down'})
-const iconPin = Icon({name: 'pin'})
-const iconList = Icon({name: 'list', })
-const iconRemove = Icon({name: 'remove'})
-const iconTrash = Icon({name: 'trash'})
-const iconSearch = Icon({name: 'search'})
-const iconActivity = Icon({name: 'activity'})
-const iconAction = Icon({name: 'action'})
-const iconPlanList = Icon({name: 'plan-list'})
+const icon_cross = icon({name: 'cross', is_shadow: true, theme: { props: { fill: 'var(--color-red)'}}})
+const icon_minus = icon({name: 'minus', is_shadow: true, theme: { props: { fill: 'var(--color-yellow)'}}})
+const iconPlus = icon({name: 'plus', is_shadow: true, theme: { props: { fill: 'var(--color-green)'}}})
+const icon_up = icon({name: 'arrow-up', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
+const icon_down = icon({name: 'arrow-down', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
+const icon_left = icon({name: 'arrow-left', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
+const icon_right= icon({name: 'arrow-right', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
+const icon_play = icon({name: 'play', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
+const icon_pause = icon({name: 'pause', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
+const icon_stop = icon({name: 'stop', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
+const icon_option = icon({name: 'option', is_shadow: true, theme: { props: { fill: 'var(--color-black)'}}})
+const icon_hide = icon({name: 'hide', is_shadow: true, theme: { props: { fill: 'var(--color-grey88)'}}})
+const icon_show = icon({name: 'show', is_shadow: true, theme: { props: { fill: 'var(--color-blue)'}}})
+const icon_transfer = icon({name: 'transfer', path: './svg'})
+const icon_edit = icon({name: 'edit', is_shadow: true})
+const icon_import = icon({name: 'import', is_shadow: true})
+const icon_filter = icon({name: 'filter', is_shadow: true})
+const icon_help = icon({name: 'help', is_shadow: true})
+const icon_linechart = icon({name: 'linechart', is_shadow: true})
+const icon_treemap = icon({name: 'treemap', is_shadow: true})
+const icon_sort_up = icon({name: 'sort-up', is_shadow: true})
+const icon_sort_down = icon({name: 'sort-down', is_shadow: true})
+const icon_pin = icon({name: 'pin', is_shadow: true})
+const iconList = icon({name: 'list', is_shadow: true})
+const icon_remove = icon({name: 'remove', is_shadow: true})
+const icon_trash = icon({name: 'trash', is_shadow: true})
+const icon_search = icon({name: 'search', is_shadow: true})
+const icon_activity = icon({name: 'activity', is_shadow: true})
+const icon_action = icon({name: 'action', is_shadow: true})
+const icon_plan_list = icon({name: 'plan-list', is_shadow: true})
 // sub-step
-const iconStepConfirm = Icon({name: 'step-confirm', theme: { props: { size: '30px' }} })
-const iconStepCancel = Icon({name: 'step-cancel', theme: { props: { size: '30px' }} })
+const icon_step_confirm = icon({name: 'step-confirm', is_shadow: true, theme: { props: { size: '30px' }} })
+const icon_step_cancel = icon({name: 'step-cancel', is_shadow: true, theme: { props: { size: '30px' }} })
 // transfer event
-const iconEventTransfer = Icon({name: 'event-transfer', theme: { props: { size: '40px' }} })
-const iconEventPending = Icon({name: 'event-pending', theme: { props: { size: '40px' }} })
-const iconEventCancel = Icon({name: 'event-cancel', theme: { props: { size: '40px' }} })
-const iconEventTo = Icon({name: 'event-to', theme: { props: { size: '40px' }} })
+const icon_event_transfer = icon({name: 'event-transfer', is_shadow: true, theme: { props: { size: '40px' }} })
+const icon_event_pending = icon({name: 'event-pending', is_shadow: true, theme: { props: { size: '40px' }} })
+const icon_event_cancel = icon({name: 'event-cancel', is_shadow: true, theme: { props: { size: '40px' }} })
+const icon_event_to = icon({name: 'event-to', is_shadow: true, theme: { props: { size: '40px' }} })
 // notify
-const iconWarning = Icon({name: 'warning', theme: { props: { size: '40px' }}})
-const iconNotice = Icon({name: 'notice', theme: { props: { size: '40px' }}})
+const icon_warning = icon({name: 'warning', is_shadow: true, theme: { props: { size: '40px' }}})
+const icon_notice = icon({name: 'notice', is_shadow: true, theme: { props: { size: '40px' }}})
 
-function demoApp () {
+function demo () {
     const app = bel`
     <div class=${css.app}>
         <section>
             <h2>Action bar</h2>
             <aside>
-                <span>${iconActivity} activity</span>
-                <span>${iconPlanList} plan-list</span>
-                <span>${iconLineChart} linechart</span>
-                <span>${iconTreemap} treemap</span>
-                <span>${iconSearch} search</span>
-                <span>${iconSortUp} sort-up</span>
-                <span>${iconSortDown} sort-down</span>
-                <span>${iconFilter} filter</span>
-                <span>${iconAction} trash</span>
-                <span>${iconHelp} filter</span>
+                <span>${icon_activity} activity</span>
+                <span>${icon_plan_list} plan-list</span>
+                <span>${icon_linechart} linechart</span>
+                <span>${icon_treemap} treemap</span>
+                <span>${icon_search} search</span>
+                <span>${icon_sort_up} sort-up</span>
+                <span>${icon_sort_down} sort-down</span>
+                <span>${icon_filter} filter</span>
+                <span>${icon_action} trash</span>
+                <span>${icon_help} filter</span>
                 <span>${iconList} list</span>
             </aside>
         </section>
         <section>
         <h2>Plan action</h2>
             <aside>
-                <span>${iconPlay} play</span>
-                <span>${iconPause} pause</span>
-                <span>${iconStop} stop</span>
+                <span>${icon_play} play</span>
+                <span>${icon_pause} pause</span>
+                <span>${icon_stop} stop</span>
             </aside>
         </section>
         <section>
             <h2>Actions</h2>
             <aside>
-                <span>${iconCheck} check</span>
-                <span>${iconCross} cross</span>
-                <span>${iconMinus} minus</span>
+                <span>${icon_check} check</span>
+                <span>${icon_cross} cross</span>
+                <span>${icon_minus} minus</span>
                 <span>${iconPlus} plus</span>
-                <span>${iconOption} option</span>
-                <span>${iconEdit} edit</span>
-                <span>${iconImport} import</span>
-                <span>${iconPin} pin</span>
-                <span>${iconRemove} remove</span>
-                <span>${iconTrash} trash</span>
+                <span>${icon_option} option</span>
+                <span>${icon_edit} edit</span>
+                <span>${icon_import} import</span>
+                <span>${icon_pin} pin</span>
+                <span>${icon_remove} remove</span>
+                <span>${icon_trash} trash</span>
             </aside>
         </section>
         <section>
             <h2>Sub step</h2>
             <aside>
-                <span>${iconStepConfirm} step-confirm</span>
-                <span>${iconStepCancel} step-cancel</span>
+                <span>${icon_step_confirm} step-confirm</span>
+                <span>${icon_step_cancel} step-cancel</span>
             </aside>
         </section>
         <section>
             <h2>Show password</h2>
             <aside>
-                <span>${iconShow} show</span>
-                <span>${iconHide} hide</span>
+                <span>${icon_show} show</span>
+                <span>${icon_hide} hide</span>
             </aside>
         </section>  
         <section>
             <h2>Activity event</h2>
             <aside>
-                <span>${iconEventTransfer} event-transfer</span>
-                <span>${iconEventPending} event-pending</span>
-                <span>${iconEventCancel} event-cancel</span>
-                <span>${iconEventTo} event-to</span>
+                <span>${icon_event_transfer} event-transfer</span>
+                <span>${icon_event_pending} event-pending</span>
+                <span>${icon_event_cancel} event-cancel</span>
+                <span>${icon_event_to} event-to</span>
             </aside>
         </section>
         <section>
             <h2>Arrow</h2>
             <aside>
-                <span>${iconUp} up</span>
-                <span>${iconDown} down</span>
-                <span>${iconLeft} left</span>
-                <span>${iconRight} right</span>
+                <span>${icon_up} up</span>
+                <span>${icon_down} down</span>
+                <span>${icon_left} left</span>
+                <span>${icon_right} right</span>
             </aside>
         </section>
         <section>
             <h2>Notify</h2>
             <aside>
-                <span>${iconWarning} warning</span>
-                <span>${iconNotice} notice</span>
+                <span>${icon_warning} warning</span>
+                <span>${icon_notice} notice</span>
             </aside>
         </section>
         <section>
             <h2>Button</h2>
             <aside>
-                <button>${iconTransfer}</button>
+                <button>${icon_transfer}</button>
             </aside>
         </section>
     </div>`
@@ -242,8 +244,18 @@ button:hover svg g {
 }
 `
 
-document.body.append( demoApp() )
-},{"..":26,"bel":3,"csjs-inject":6}],2:[function(require,module,exports){
+document.body.append( demo() )
+},{"..":27,"bel":4,"csjs-inject":7,"head":2}],2:[function(require,module,exports){
+module.exports = head
+
+function head (lang = 'utf8', title = 'Icon - DatDot UI') {
+    document.title = title
+    const meta = document.createElement('meta')
+    meta.setAttribute('name', 'viewport')
+    meta.setAttribute('content', 'width=device-width, initial-scale=1.0')
+    document.head.appendChild(meta)
+}
+},{}],3:[function(require,module,exports){
 var trailingNewlineRegex = /\n[\s]+$/
 var leadingNewlineRegex = /^\n[\s]+/
 var trailingSpaceRegex = /[\s]+$/
@@ -376,7 +388,7 @@ module.exports = function appendChild (el, childs) {
   }
 }
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 var hyperx = require('hyperx')
 var appendChild = require('./appendChild')
 
@@ -477,7 +489,7 @@ module.exports = hyperx(belCreateElement, {comments: true})
 module.exports.default = module.exports
 module.exports.createElement = belCreateElement
 
-},{"./appendChild":2,"hyperx":24}],4:[function(require,module,exports){
+},{"./appendChild":3,"hyperx":25}],5:[function(require,module,exports){
 (function (global){(function (){
 'use strict';
 
@@ -496,12 +508,12 @@ function csjsInserter() {
 module.exports = csjsInserter;
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"csjs":9,"insert-css":25}],5:[function(require,module,exports){
+},{"csjs":10,"insert-css":26}],6:[function(require,module,exports){
 'use strict';
 
 module.exports = require('csjs/get-css');
 
-},{"csjs/get-css":8}],6:[function(require,module,exports){
+},{"csjs/get-css":9}],7:[function(require,module,exports){
 'use strict';
 
 var csjs = require('./csjs');
@@ -510,17 +522,17 @@ module.exports = csjs;
 module.exports.csjs = csjs;
 module.exports.getCss = require('./get-css');
 
-},{"./csjs":4,"./get-css":5}],7:[function(require,module,exports){
+},{"./csjs":5,"./get-css":6}],8:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./lib/csjs');
 
-},{"./lib/csjs":13}],8:[function(require,module,exports){
+},{"./lib/csjs":14}],9:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./lib/get-css');
 
-},{"./lib/get-css":17}],9:[function(require,module,exports){
+},{"./lib/get-css":18}],10:[function(require,module,exports){
 'use strict';
 
 var csjs = require('./csjs');
@@ -530,7 +542,7 @@ module.exports.csjs = csjs;
 module.exports.noScope = csjs({ noscope: true });
 module.exports.getCss = require('./get-css');
 
-},{"./csjs":7,"./get-css":8}],10:[function(require,module,exports){
+},{"./csjs":8,"./get-css":9}],11:[function(require,module,exports){
 'use strict';
 
 /**
@@ -552,7 +564,7 @@ module.exports = function encode(integer) {
   return str;
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 var makeComposition = require('./composition').makeComposition;
@@ -596,7 +608,7 @@ function getClassChain(obj) {
   return acc;
 }
 
-},{"./composition":12}],12:[function(require,module,exports){
+},{"./composition":13}],13:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -676,7 +688,7 @@ function ignoreComposition(values) {
  */
 function Composition() {}
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 var extractExtends = require('./css-extract-extends');
@@ -754,7 +766,7 @@ function without(obj, unwanted) {
   }, {});
 }
 
-},{"./build-exports":11,"./composition":12,"./css-extract-extends":14,"./css-key":15,"./extract-exports":16,"./scopeify":22}],14:[function(require,module,exports){
+},{"./build-exports":12,"./composition":13,"./css-extract-extends":15,"./css-key":16,"./extract-exports":17,"./scopeify":23}],15:[function(require,module,exports){
 'use strict';
 
 var makeComposition = require('./composition').makeComposition;
@@ -807,7 +819,7 @@ function getClassName(str) {
   return trimmed[0] === '.' ? trimmed.substr(1) : trimmed;
 }
 
-},{"./composition":12}],15:[function(require,module,exports){
+},{"./composition":13}],16:[function(require,module,exports){
 'use strict';
 
 /**
@@ -817,7 +829,7 @@ function getClassName(str) {
 
 module.exports = ' css ';
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 var regex = require('./regex');
@@ -844,7 +856,7 @@ function getExport(css, regex) {
   return prop;
 }
 
-},{"./regex":19}],17:[function(require,module,exports){
+},{"./regex":20}],18:[function(require,module,exports){
 'use strict';
 
 var cssKey = require('./css-key');
@@ -853,7 +865,7 @@ module.exports = function getCss(csjs) {
   return csjs[cssKey];
 };
 
-},{"./css-key":15}],18:[function(require,module,exports){
+},{"./css-key":16}],19:[function(require,module,exports){
 'use strict';
 
 /**
@@ -871,7 +883,7 @@ module.exports = function hashStr(str) {
   return hash >>> 0;
 };
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 var findClasses = /(\.)(?!\d)([^\s\.,{\[>+~#:)]*)(?![^{]*})/.source;
@@ -887,7 +899,7 @@ module.exports = {
   ignoreComments: ignoreComments,
 };
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 var ignoreComments = require('./regex').ignoreComments;
 
 module.exports = replaceAnimations;
@@ -918,7 +930,7 @@ function replaceAnimations(result) {
   return result;
 }
 
-},{"./regex":19}],21:[function(require,module,exports){
+},{"./regex":20}],22:[function(require,module,exports){
 'use strict';
 
 var encode = require('./base62-encode');
@@ -932,7 +944,7 @@ module.exports = function fileScoper(fileSrc) {
   }
 };
 
-},{"./base62-encode":10,"./hash-string":18}],22:[function(require,module,exports){
+},{"./base62-encode":11,"./hash-string":19}],23:[function(require,module,exports){
 'use strict';
 
 var fileScoper = require('./scoped-name');
@@ -973,7 +985,7 @@ function scopify(css, ignores) {
   return replaceAnimations(result);
 }
 
-},{"./regex":19,"./replace-animations":20,"./scoped-name":21}],23:[function(require,module,exports){
+},{"./regex":20,"./replace-animations":21,"./scoped-name":22}],24:[function(require,module,exports){
 module.exports = attributeToProperty
 
 var transform = {
@@ -994,7 +1006,7 @@ function attributeToProperty (h) {
   }
 }
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 var attrToProp = require('hyperscript-attribute-to-property')
 
 var VAR = 0, TEXT = 1, OPEN = 2, CLOSE = 3, ATTR = 4
@@ -1291,7 +1303,7 @@ var closeRE = RegExp('^(' + [
 ].join('|') + ')(?:[\.#][a-zA-Z0-9\u007F-\uFFFF_:-]+)*$')
 function selfClosing (tag) { return closeRE.test(tag) }
 
-},{"hyperscript-attribute-to-property":23}],25:[function(require,module,exports){
+},{"hyperscript-attribute-to-property":24}],26:[function(require,module,exports){
 var inserted = {};
 
 module.exports = function (css, options) {
@@ -1315,67 +1327,65 @@ module.exports = function (css, options) {
     }
 };
 
-},{}],26:[function(require,module,exports){
-const styleSheet = require('supportCSSStyleSheet')
+},{}],27:[function(require,module,exports){
+const style_sheet = require('support-style-sheet')
 const svg = require('svg')
 
-module.exports = ({name, path, isShadow = true, theme}) => {
+module.exports = ({name, path, is_shadow = false, theme}) => {
     const url = path ? path : './src/svg'
     const symbol = svg(`${url}/${name}.svg`)
-    // if not use shadowDOM return icon that support hover effect
-    if (!isShadow) return symbol
+    if (is_shadow) {
+        function layout (style) {
+            const icon = document.createElement('i-icon')
+            const shadow = icon.attachShadow({mode: 'closed'})
+            const slot = document.createElement('slot')
+            slot.name = 'icon'
+            style_sheet(shadow, style)
+            slot.append(symbol)
+            shadow.append(slot)
+            return icon
+        }
+        // insert CSS style
+        const custom_style = theme ? theme.style : ''
+        // set CSS variables
+        if (theme && theme.props) {
+            var { fill, size } = theme.props
+        }
+        const style = `
+        :host(i-icon) {
+            --size: ${size ? size : '24px'};
+            --fill: ${fill ? fill : 'var(--primary-color)'};
+            display: block;
+        }
+        slot[name='icon'] {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+        slot[name='icon'] span {
+            display: block;
+            width: var(--size);
+            height: var(--size);
+        }
+        slot[name='icon'] svg {
+            width: 100%;
+            height: auto;
+        }
+        slot[name='icon'] g {
+            fill: hsl(var(--fill));
+            transition: fill .3s ease-in-out;
+        }
+        ${custom_style}
+        `
+        return layout(style)
+    }
 
-    /* use closed mode of shadwoDOM is not allowed to catch shadowDOM elemnt, 
-       and any element cannot support customizing :hover style when parent triggered hover
-    */
-    function layout(style) {
-        const icon = document.createElement('i-icon')
-        const shadow = icon.attachShadow({mode: 'closed'})
-        const slot = document.createElement('slot')
-        slot.name = 'icon'
-        styleSheet(shadow, style)
-        slot.append(symbol)
-        shadow.append(slot)
-        return icon
-    }
-    // insert CSS style
-    const customStyle = theme ? theme.style : ''
-    // set CSS variables
-    if (theme && theme.props) {
-        var { fill, size } = theme.props
-    }
-    const style = `
-    :host(i-icon) {
-        --size: ${size ? size : '24px'};
-        --fill: ${fill ? fill : 'var(--primary-color)'};
-        display: block;
-    }
-    slot[name='icon'] {
-        display: grid;
-        justify-content: center;
-        align-items: center;
-    }
-    slot[name='icon'] span {
-        display: block;
-        width: var(--size);
-        height: var(--size);
-    }
-    slot[name='icon'] svg {
-        width: 100%;
-        height: auto;
-    }
-    slot[name='icon'] g {
-        fill: hsl(var(--fill));
-        transition: fill .3s ease-in-out;
-    }
-    ${customStyle}
-    `
-    return layout(style)
+    return symbol
 }
 
-},{"supportCSSStyleSheet":27,"svg":28}],27:[function(require,module,exports){
-module.exports = supportCSSStyleSheet
-function supportCSSStyleSheet (root, style) {
+},{"support-style-sheet":28,"svg":29}],28:[function(require,module,exports){
+module.exports = support_style_sheet
+function support_style_sheet (root, style) {
     return (() => {
         try {
             const sheet = new CSSStyleSheet()
@@ -1383,33 +1393,24 @@ function supportCSSStyleSheet (root, style) {
             root.adoptedStyleSheets = [sheet]
             return true 
         } catch (error) { 
-            const injectStyle = `<style>${style}</style>`
-            root.innerHTML = `${injectStyle}`
+            const inject_style = `<style>${style}</style>`
+            root.innerHTML = `${inject_style}`
             return false
         }
     })()
 }
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 module.exports = svg
-
-function svg(path) {
-    const el = document.createElement('span')
-    el.classList.add('icon')
-    async function load(done) {
+function svg (path) {
+    const span = document.createElement('span')
+    span.classList.add('icon')
+    get_svg()
+    async function get_svg () {
         const res = await fetch(path)
-        const parse = document.createElement('div')
-
-        if (res.status == 200) {
-            let data = await res.text()
-            parse.innerHTML = data
-            return done(null, parse.children[0])
-        }
-        throw new Error(res.status)
+        if (res.status !== 200) throw new Error(res.status)
+        let data = await res.text()
+        span.innerHTML = data
     }
-    load((err, svg) => {
-        if (err) console.error(err)
-        el.append(svg)
-    })
-    return el
+    return span
 }   
 },{}]},{},[1]);
