@@ -3,6 +3,7 @@ const bel = require('bel')
 const csjs = require('csjs-inject')
 const head = require('head')()
 const icon = require('..')
+
 // icons
 const icon_check = icon({name: 'check', 
 is_shadow: true,
@@ -187,6 +188,7 @@ const css = csjs`
     --color-bright-yellow-crayola: 35, 100%, 58%;
     --color-purple: 283, var(--r);
     --color-medium-purple: 269, 100%, 70%;
+    --color-electric-violet: 276, 98%, 48%;
     --color-grey33: var(--b), 20%;
     --color-grey66: var(--b), 40%;
     --color-grey70: var(--b), 44%;
@@ -244,7 +246,7 @@ button:hover svg g {
 }
 `
 
-document.body.append( demo() )
+document.body.append(demo())
 },{"..":27,"bel":4,"csjs-inject":7,"head":2}],2:[function(require,module,exports){
 module.exports = head
 
