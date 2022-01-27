@@ -10,19 +10,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fionataeyang/datdot-ui-icon.git"
+    "url": "git+https://github.com/datdotorg/datdot-ui-icon.git"
   },
   "keywords": [
     "svg",
     "icon",
     "datdot-ui"
   ],
-  "author": "fionataeyang",
+  "author": "datdotorg",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fionataeyang/datdot-ui-icon/issues"
+    "url": "https://github.com/datdotorg/datdot-ui-icon/issues"
   },
-  "homepage": "https://github.com/fionataeyang/datdot-ui-icon#readme",
+  "homepage": "https://github.com/datdotorg/datdot-ui-icon#readme",
   "dependencies": {
     "bel": "^6.0.0",
     "budo": "^11.6.4",
