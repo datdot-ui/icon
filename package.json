@@ -19,9 +19,6 @@
   ],
   "author": "datdotorg",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/datdotorg/datdot-ui-icon/issues"
-  },
   "homepage": "https://github.com/datdotorg/datdot-ui-icon#readme",
   "dependencies": {
     "bel": "^6.0.0",
