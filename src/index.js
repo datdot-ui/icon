@@ -1,7 +1,28 @@
 const style_sheet = require('support-style-sheet')
 const svg = require('svg')
+const message_maker = require('message-maker')
 
-module.exports = ({name, path, is_shadow = false, theme}) => {
+var id = 0
+
+module.exports = ({name, path, is_shadow = false, theme}, parent_protocol) => {
+// ---------------------------------------------------------------
+    const myaddress = `icon-${id++}`
+    const inbox = {}
+    const outbox = {}
+    const recipients = {}
+    const message_id = to => ( outbox[to] = 1 + (outbox[to]||0) )
+
+    const {notify, address} = parent_protocol(myaddress, listen)
+    const make = message_maker(myaddress)
+    let message = make({ to: address, type: 'ready', refs: ['old_logs', 'new_logs'] })
+    notify(message)
+
+    function listen (msg) {
+        const {head, refs, type, data, meta } = msg
+        inbox[head.join('/')] = msg                  // store msg
+        const [from, to, msg_id] = head       
+    }
+ // ---------------------------------------------------------------   
     const url = path ? path : './src/svg'
     const symbol = svg(`${url}/${name}.svg`)
     if (is_shadow) {

@@ -2,70 +2,94 @@ const bel = require('bel')
 const csjs = require('csjs-inject')
 const head = require('head')()
 const icon = require('..')
+const message_maker = require('message-maker')
 
-// icons
-const icon_check = icon({name: 'check', 
-is_shadow: true,
-theme: {
-    style: `
-    :host(i-icon) span {
-        padding: 4px;
-        background-color: hsl(var(--color-greyF2));
-    }
-    :host(i-icon) svg g { 
-        --fill: var(--color-amaranth-pink);
-        stroke-width: 1;
-        stroke: hsl(var(--color-amaranth-pink));
-    };
-    ` ,
-    props: {
-        //  fill: 'var(--color-persian-rose)',
-        // size: '8rem'
-    }
-}})
-const icon_cross = icon({name: 'cross', is_shadow: true, theme: { props: { fill: 'var(--color-red)'}}})
-const icon_minus = icon({name: 'minus', is_shadow: true, theme: { props: { fill: 'var(--color-yellow)'}}})
-const iconPlus = icon({name: 'plus', is_shadow: true, theme: { props: { fill: 'var(--color-green)'}}})
-const icon_up = icon({name: 'arrow-up', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
-const icon_down = icon({name: 'arrow-down', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
-const icon_left = icon({name: 'arrow-left', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
-const icon_right= icon({name: 'arrow-right', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
-const icon_play = icon({name: 'play', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
-const icon_pause = icon({name: 'pause', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
-const icon_stop = icon({name: 'stop', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
-const icon_option = icon({name: 'option', is_shadow: true, theme: { props: { fill: 'var(--color-black)'}}})
-const icon_hide = icon({name: 'hide', is_shadow: true, theme: { props: { fill: 'var(--color-grey88)'}}})
-const icon_show = icon({name: 'show', is_shadow: true, theme: { props: { fill: 'var(--color-blue)'}}})
-const icon_transfer = icon({name: 'transfer', path: './svg'})
-const icon_edit = icon({name: 'edit', is_shadow: true})
-const icon_import = icon({name: 'import', is_shadow: true})
-const icon_filter = icon({name: 'filter', is_shadow: true})
-const icon_help = icon({name: 'help', is_shadow: true})
-const icon_linechart = icon({name: 'linechart', is_shadow: true})
-const icon_treemap = icon({name: 'treemap', is_shadow: true})
-const icon_sort_up = icon({name: 'sort-up', is_shadow: true})
-const icon_sort_down = icon({name: 'sort-down', is_shadow: true})
-const icon_pin = icon({name: 'pin', is_shadow: true})
-const iconList = icon({name: 'list', is_shadow: true})
-const icon_remove = icon({name: 'remove', is_shadow: true})
-const icon_trash = icon({name: 'trash', is_shadow: true})
-const icon_search = icon({name: 'search', is_shadow: true})
-const icon_activity = icon({name: 'activity', is_shadow: true})
-const icon_action = icon({name: 'action', is_shadow: true})
-const icon_plan_list = icon({name: 'plan-list', is_shadow: true})
-// sub-step
-const icon_step_confirm = icon({name: 'step-confirm', is_shadow: true, theme: { props: { size: '30px' }} })
-const icon_step_cancel = icon({name: 'step-cancel', is_shadow: true, theme: { props: { size: '30px' }} })
-// transfer event
-const icon_event_transfer = icon({name: 'event-transfer', is_shadow: true, theme: { props: { size: '40px' }} })
-const icon_event_pending = icon({name: 'event-pending', is_shadow: true, theme: { props: { size: '40px' }} })
-const icon_event_cancel = icon({name: 'event-cancel', is_shadow: true, theme: { props: { size: '40px' }} })
-const icon_event_to = icon({name: 'event-to', is_shadow: true, theme: { props: { size: '40px' }} })
-// notify
-const icon_warning = icon({name: 'warning', is_shadow: true, theme: { props: { size: '40px' }}})
-const icon_notice = icon({name: 'notice', is_shadow: true, theme: { props: { size: '40px' }}})
+var id = 0
 
 function demo () {
+
+// ---------------------------------------------------------------
+    const myaddress = `demo-${id++}`
+    const inbox = {}
+    const outbox = {}
+    const recipients = {}
+    const message_id = to => ( outbox[to] = 1 + (outbox[to]||0) )
+
+    function make_protocol (name) {
+        return function protocol (address, notify) {
+            recipients[name] = { address, notify, make: message_maker(myaddress) }
+            return { notify: listen, address: myaddress }
+        }
+    }
+    function listen (msg) {
+        console.log('New message', { msg })
+        const { head, refs, type, data, meta } = msg // receive msg
+        inbox[head.join('/')] = msg                  // store msg
+        const [from] = head
+        console.log({recipients})
+    }
+// ---------------------------------------------------------------
+    // icons
+    const icon_check = icon({name: 'check', is_shadow: true,
+        theme: {style: `
+            :host(i-icon) span {
+                padding: 4px;
+                background-color: hsl(var(--color-greyF2));
+            }
+            :host(i-icon) svg g { 
+                --fill: var(--color-amaranth-pink);
+                stroke-width: 1;
+                stroke: hsl(var(--color-amaranth-pink));
+            };`,
+            props: {
+                //  fill: 'var(--color-persian-rose)',
+                // size: '8rem'
+            }
+        }
+    }, make_protocol('check'))
+    const icon_cross = icon({name: 'cross', is_shadow: true, theme: { props: { fill: 'var(--color-red)'}}}, make_protocol('cross'))
+    const icon_minus = icon({name: 'minus', is_shadow: true, theme: { props: { fill: 'var(--color-yellow)'}}}, make_protocol('minus'))
+    const iconPlus = icon({name: 'plus', is_shadow: true, theme: { props: { fill: 'var(--color-green)'}}},make_protocol('plus'))
+    const icon_up = icon({name: 'arrow-up', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}}, make_protocol('arrow-up'))
+    const icon_down = icon({name: 'arrow-down', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}}, make_protocol('arrow-down'))
+    const icon_left = icon({name: 'arrow-left', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}}, make_protocol('arrow-left'))
+    const icon_right= icon({name: 'arrow-right', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}}, make_protocol('arrow-right'))
+    const icon_play = icon({name: 'play', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}}, make_protocol('play'))
+    const icon_pause = icon({name: 'pause', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}}, make_protocol('pause'))
+    const icon_stop = icon({name: 'stop', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}}, make_protocol('stop'))
+    const icon_option = icon({name: 'option', is_shadow: true, theme: { props: { fill: 'var(--color-black)'}}}, make_protocol('option'))
+    const icon_hide = icon({name: 'hide', is_shadow: true, theme: { props: { fill: 'var(--color-grey88)'}}}, make_protocol('hide'))
+    const icon_show = icon({name: 'show', is_shadow: true, theme: { props: { fill: 'var(--color-blue)'}}}, make_protocol('show'))
+    const icon_transfer = icon({name: 'transfer', path: './svg'}, make_protocol('transfer'))
+    const icon_edit = icon({name: 'edit', is_shadow: true}, make_protocol('edit'))
+    const icon_import = icon({name: 'import', is_shadow: true}, make_protocol('import'))
+    const icon_filter = icon({name: 'filter', is_shadow: true}, make_protocol('filter'))
+    const icon_help = icon({name: 'help', is_shadow: true}, make_protocol('help'))
+    const icon_linechart = icon({name: 'linechart', is_shadow: true}, make_protocol('linechart'))
+    const icon_treemap = icon({name: 'treemap', is_shadow: true}, make_protocol('treemap'))
+    const icon_sort_up = icon({name: 'sort-up', is_shadow: true}, make_protocol('sort-up'))
+    const icon_sort_down = icon({name: 'sort-down', is_shadow: true}, make_protocol('sort-down'))
+    const icon_pin = icon({name: 'pin', is_shadow: true}, make_protocol('pin'))
+    const iconList = icon({name: 'list', is_shadow: true}, make_protocol('list'))
+    const icon_remove = icon({name: 'remove', is_shadow: true}, make_protocol('remove'))
+    const icon_trash = icon({name: 'trash', is_shadow: true}, make_protocol('trash'))
+    const icon_search = icon({name: 'search', is_shadow: true}, make_protocol('search'))
+    const icon_activity = icon({name: 'activity', is_shadow: true}, make_protocol('activity'))
+    const icon_action = icon({name: 'action', is_shadow: true}, make_protocol('action'))
+    const icon_plan_list = icon({name: 'plan-list', is_shadow: true}, make_protocol('plan-list'))
+    // sub-step
+    const icon_step_confirm = icon({name: 'step-confirm', is_shadow: true, theme: { props: { size: '30px' }} }, make_protocol('step-confirm'))
+    const icon_step_cancel = icon({name: 'step-cancel', is_shadow: true, theme: { props: { size: '30px' }} }, make_protocol('step-cancel'))
+    // transfer event
+    const icon_event_transfer = icon({name: 'event-transfer', is_shadow: true, theme: { props: { size: '40px' }} }, make_protocol('event-transfer'))
+    const icon_event_pending = icon({name: 'event-pending', is_shadow: true, theme: { props: { size: '40px' }} }, make_protocol('event-pending'))
+    const icon_event_cancel = icon({name: 'event-cancel', is_shadow: true, theme: { props: { size: '40px' }} }, make_protocol('event-cancel'))
+    const icon_event_to = icon({name: 'event-to', is_shadow: true, theme: { props: { size: '40px' }} }, make_protocol('event-to'))
+    // notify
+    const icon_warning = icon({name: 'warning', is_shadow: true, theme: { props: { size: '40px' }}}, make_protocol('warning'))
+    const icon_notice = icon({name: 'notice', is_shadow: true, theme: { props: { size: '40px' }}}, make_protocol('notice'))
+
+    // APP
     const app = bel`
     <div class=${css.app}>
         <section>
@@ -153,6 +177,7 @@ function demo () {
             </aside>
         </section>
     </div>`
+
     return app
 }
 
