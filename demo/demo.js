@@ -3,18 +3,18 @@ const csjs = require('csjs-inject')
 const head = require('head')()
 const icon = require('..')
 const message_maker = require('message-maker')
+const logs = require('datdot-ui-logs')
 
 var id = 0
 
 function demo () {
-
-// ---------------------------------------------------------------
+    // ---------------------------------------------------------------
     const myaddress = `demo-${id++}`
     const inbox = {}
     const outbox = {}
     const recipients = {}
     const message_id = to => ( outbox[to] = 1 + (outbox[to]||0) )
-
+    
     function make_protocol (name) {
         return function protocol (address, notify) {
             recipients[name] = { address, notify, make: message_maker(myaddress) }
@@ -26,9 +26,13 @@ function demo () {
         const { head, refs, type, data, meta } = msg // receive msg
         inbox[head.join('/')] = msg                  // store msg
         const [from] = head
-        console.log({recipients})
+        // send to logs
+        const { notify, address, make } = recipients['logs']
+        notify(make({ to: address, type: 'click', data: data }))
     }
-// ---------------------------------------------------------------
+    // ---------------------------------------------------------------
+    const logList = logs(make_protocol('logs'))
+
     // icons
     const icon_check = icon({name: 'check', is_shadow: true,
         theme: {style: `
@@ -171,10 +175,13 @@ function demo () {
             </aside>
         </section>
         <section>
-            <h2>Button</h2>
-            <aside>
-                <button>${icon_transfer}</button>
-            </aside>
+        <h2>Button</h2>
+        <aside>
+        <button>${icon_transfer}</button>
+        </aside>
+        </section>
+        <section>
+            ${logList}
         </section>
     </div>`
 
