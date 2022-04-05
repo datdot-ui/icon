@@ -1,6 +1,6 @@
 {
   "name": "datdot-ui-icon",
-  "version": "1.0.0",
+  "version": "0.0.1-alpha",
   "description": "Load svg icon",
   "main": "src/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/datdotorg/datdot-ui-icon.git"
+    "url": "git+https://github.com/datdot-ui/icon.git"
   },
   "keywords": [
     "svg",
@@ -19,15 +19,15 @@
   ],
   "author": "datdotorg",
   "license": "MIT",
-  "homepage": "https://github.com/datdotorg/datdot-ui-icon#readme",
+  "homepage": "https://github.com/datdot-ui/icon#readme",
   "dependencies": {
     "bel": "^6.0.0",
     "csjs-inject": "^1.0.1",
-    "datdot-ui-logs": "git+https://github.com/datdotorg/datdot-ui-logs.git",
     "message-maker": "github:datdotorg/message-maker"
   },
   "devDependencies": {
     "browserify": "^17.0.0",
-    "budo": "^11.6.4"
+    "budo": "^11.6.4",
+    "datdot-ui-logs": "git+https://github.com/datdot-ui/logs.git#v0.0.1-alpha"
   }
 }

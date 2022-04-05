@@ -1,0 +1,146 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "datdot-ui-icon",
+      "version": "0.0.1-alpha",
+      "description": "Load svg icon",
+      "main": "src/index.js",
+      "scripts": {
+        "start": "budo demo/demo.js:bundle.js --open --live",
+        "build": "browserify demo/demo.js -o bundle.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/datdot-ui/icon.git"
+      },
+      "keywords": [
+        "svg",
+        "icon",
+        "datdot-ui"
+      ],
+      "author": "datdotorg",
+      "license": "MIT",
+      "homepage": "https://github.com/datdot-ui/icon#readme",
+      "dependencies": {
+        "bel": "^6.0.0",
+        "csjs-inject": "^1.0.1",
+        "datdot-ui-logs": "git+https://github.com/datdot-ui/logs.git#v0.1.0-alpha",
+        "message-maker": "github:datdotorg/message-maker"
+      },
+      "devDependencies": {
+        "browserify": "^17.0.0",
+        "budo": "^11.6.4"
+      }
+    },
+    "prefix": "/home/ninabreznik/Documents/code/play/datdot/ui/icon"
+  },
+  "2 debug pnpm:context": {
+    "currentLockfileExists": false,
+    "storeDir": "/home/ninabreznik/.pnpm-store/v3",
+    "virtualStoreDir": "/home/ninabreznik/Documents/code/play/datdot/ui/icon/node_modules/.pnpm"
+  },
+  "3 debug pnpm:stage": {
+    "prefix": "/home/ninabreznik/Documents/code/play/datdot/ui/icon",
+    "stage": "resolution_started"
+  },
+  "4 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/browserify/17.0.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "browserify",
+      "rawSpec": "^17.0.0"
+    }
+  },
+  "5 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/browserify/17.0.0",
+    "requester": "/home/ninabreznik/Documents/code/play/datdot/ui/icon",
+    "status": "resolved"
+  },
+  "6 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/browserify/17.0.0",
+    "requester": "/home/ninabreznik/Documents/code/play/datdot/ui/icon",
+    "status": "found_in_store"
+  },
+  "7 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/bel/6.0.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "bel",
+      "rawSpec": "^6.0.0"
+    }
+  },
+  "8 debug pnpm:deprecation": {
+    "deprecated": "Renamed to 'nanohtml'. 'npm install nanohtml'",
+    "depth": 0,
+    "pkgId": "registry.npmjs.org/bel/6.0.0",
+    "pkgName": "bel",
+    "pkgVersion": "6.0.0",
+    "prefix": "/home/ninabreznik/Documents/code/play/datdot/ui/icon"
+  },
+  "9 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/bel/6.0.0",
+    "requester": "/home/ninabreznik/Documents/code/play/datdot/ui/icon",
+    "status": "resolved"
+  },
+  "10 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/csjs-inject/1.0.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "csjs-inject",
+      "rawSpec": "^1.0.1"
+    }
+  },
+  "11 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/csjs-inject/1.0.1",
+    "requester": "/home/ninabreznik/Documents/code/play/datdot/ui/icon",
+    "status": "resolved"
+  },
+  "12 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/csjs-inject/1.0.1",
+    "requester": "/home/ninabreznik/Documents/code/play/datdot/ui/icon",
+    "status": "found_in_store"
+  },
+  "13 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/bel/6.0.0",
+    "requester": "/home/ninabreznik/Documents/code/play/datdot/ui/icon",
+    "status": "found_in_store"
+  },
+  "14 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/budo/11.7.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "budo",
+      "rawSpec": "^11.6.4"
+    }
+  },
+  "15 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/budo/11.7.0",
+    "requester": "/home/ninabreznik/Documents/code/play/datdot/ui/icon",
+    "status": "resolved"
+  },
+  "16 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/budo/11.7.0",
+    "requester": "/home/ninabreznik/Documents/code/play/datdot/ui/icon",
+    "status": "found_in_store"
+  },
+  "17 debug pnpm:_dependency_resolved": {
+    "resolution": "github.com/datdotorg/message-maker/d841e407a1520ed6f1a579a1892f13f5e3c13c92",
+    "wanted": {
+      "dependentId": ".",
+      "name": "message-maker",
+      "rawSpec": "github:datdotorg/message-maker"
+    }
+  },
+  "18 error pnpm": {
+    "pkgsStack": [],
+    "err": {
+      "name": "pnpm",
+      "message": "Could not resolve v0.1.0-alpha to a commit of https://github.com/datdot-ui/logs.git.",
+      "stack": "pnpm: Could not resolve v0.1.0-alpha to a commit of https://github.com/datdot-ui/logs.git.\n    at resolveRefFromRefs (/home/ninabreznik/.npm-global/lib/node_modules/pnpm/dist/pnpm.cjs:85002:17)\n    at resolveRef (/home/ninabreznik/.npm-global/lib/node_modules/pnpm/dist/pnpm.cjs:84996:14)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async resolveGit (/home/ninabreznik/.npm-global/lib/node_modules/pnpm/dist/pnpm.cjs:84946:24)\n    at async Object.resolve (/home/ninabreznik/.npm-global/lib/node_modules/pnpm/dist/pnpm.cjs:86071:241)\n    at async run (/home/ninabreznik/.npm-global/lib/node_modules/pnpm/dist/pnpm.cjs:74166:23)"
+    }
+  }
+}
