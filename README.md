@@ -1,5 +1,28 @@
 # datdot-ui-icon
-Support to load `SVG` icon
+DatDot UI component
+
+Opts
+---
+
+`{ name, path, is_shadow = false, theme }`
+
+Roles
+---
+
+/
+
+Incomming message types
+---
+
+/
+
+Outgoing message types
+---
+
+- `ready`
+- `click`
+
+---
 
 ![image](https://user-images.githubusercontent.com/9526525/123254804-b14a3680-d521-11eb-9c89-c15e59ec1684.png)
 ## Import
