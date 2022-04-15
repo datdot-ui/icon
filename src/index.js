@@ -1,29 +1,7 @@
 const style_sheet = require('support-style-sheet')
 const svg = require('svg')
-const message_maker = require('message-maker')
 
-var id = 0
-
-module.exports = ({name, path, is_shadow = false, theme}, parent_protocol) => {
-// ---------------------------------------------------------------
-    const myaddress = `${__filename}-${id++}`
-    const inbox = {}
-    const outbox = {}
-    const recipients = {}
-    const names = {}
-    const message_id = to => (outbox[to] = 1 + (outbox[to]||0))
-
-    const {notify, address} = parent_protocol(myaddress, listen)
-    names[address] = recipients['parent'] = { name: 'parent', notify, address, make: message_maker(myaddress) }
-    notify(recipients['parent'].make({ to: address, type: 'ready', refs: ['old_logs', 'new_logs'] }))
-
-    function listen (msg) {
-        const {head, refs, type, data, meta } = msg
-        inbox[head.join('/')] = msg                  // store msg
-        const [from, to, msg_id] = head    
-        console.log('New message', { msg })
-    }
- // ---------------------------------------------------------------   
+module.exports = ({name, path, is_shadow = false, theme}) => {
     const url = path ? path : './src/svg'
     const symbol = svg(`${url}/${name}.svg`)
     if (is_shadow) {
@@ -35,14 +13,7 @@ module.exports = ({name, path, is_shadow = false, theme}, parent_protocol) => {
             style_sheet(shadow, style)
             slot.append(symbol)
             shadow.append(slot)
-            shadow.addEventListener('click', handleOnClick)
             return icon
-        }
-
-        function handleOnClick (e) {
-            console.log('Click', e)
-            const { notify, address, make } = recipients['parent']
-            notify(make({ to: address, type: 'click', data: { event: e }, refs: {} }))
         }
 
         // insert CSS style
