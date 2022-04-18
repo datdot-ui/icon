@@ -1,6 +1,6 @@
 {
   "name": "datdot-ui-icon",
-  "version": "0.0.1-alpha",
+  "version": "0.0.2",
   "description": "Load svg icon",
   "main": "src/index.js",
   "scripts": {
@@ -27,7 +27,6 @@
   },
   "devDependencies": {
     "browserify": "^17.0.0",
-    "budo": "^11.6.4",
-    "datdot-ui-logs": "git+https://github.com/datdot-ui/logs.git#v0.0.1-alpha"
+    "budo": "^11.7.0"
   }
 }
