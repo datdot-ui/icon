@@ -3,8 +3,14 @@ const bel = require('bel')
 const csjs = require('csjs-inject')
 const head = require('head')()
 const icon = require('..')
+const protocol_maker = require('protocol-maker')
 
 function demo () {
+    const contacts = protocol_maker('demo', listen)
+    function listen (msg) {
+        const { head, refs, type, data, meta } = msg // receive msg
+        const [from, to, msg_id] = head
+    }    
     // icons
     const icon_check = icon({name: 'check', is_shadow: true,
         theme: {style: `
@@ -22,48 +28,48 @@ function demo () {
                 // size: '8rem'
             }
         }
-    })
-    const icon_cross = icon({name: 'cross', is_shadow: true, theme: { props: { fill: 'var(--color-red)'}}})
-    const icon_minus = icon({name: 'minus', is_shadow: true, theme: { props: { fill: 'var(--color-yellow)'}}})
-    const iconPlus = icon({name: 'plus', is_shadow: true, theme: { props: { fill: 'var(--color-green)'}}})
-    const icon_up = icon({name: 'arrow-up', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
-    const icon_down = icon({name: 'arrow-down', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
-    const icon_left = icon({name: 'arrow-left', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
-    const icon_right= icon({name: 'arrow-right', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}})
-    const icon_play = icon({name: 'play', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
-    const icon_pause = icon({name: 'pause', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
-    const icon_stop = icon({name: 'stop', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}})
-    const icon_option = icon({name: 'option', is_shadow: true, theme: { props: { fill: 'var(--color-black)'}}})
-    const icon_hide = icon({name: 'hide', is_shadow: true, theme: { props: { fill: 'var(--color-grey88)'}}})
-    const icon_show = icon({name: 'show', is_shadow: true, theme: { props: { fill: 'var(--color-blue)'}}})
-    const icon_transfer = icon({name: 'transfer', path: './svg'})
-    const icon_edit = icon({name: 'edit', is_shadow: true})
-    const icon_import = icon({name: 'import', is_shadow: true})
-    const icon_filter = icon({name: 'filter', is_shadow: true})
-    const icon_help = icon({name: 'help', is_shadow: true})
-    const icon_linechart = icon({name: 'linechart', is_shadow: true})
-    const icon_treemap = icon({name: 'treemap', is_shadow: true})
-    const icon_sort_up = icon({name: 'sort-up', is_shadow: true})
-    const icon_sort_down = icon({name: 'sort-down', is_shadow: true})
-    const icon_pin = icon({name: 'pin', is_shadow: true})
-    const iconList = icon({name: 'list', is_shadow: true})
-    const icon_remove = icon({name: 'remove', is_shadow: true})
-    const icon_trash = icon({name: 'trash', is_shadow: true})
-    const icon_search = icon({name: 'search', is_shadow: true})
-    const icon_activity = icon({name: 'activity', is_shadow: true})
-    const icon_action = icon({name: 'action', is_shadow: true})
-    const icon_plan_list = icon({name: 'plan-list', is_shadow: true})
+    }, contacts.add('check'))
+    const icon_cross = icon({name: 'cross', is_shadow: true, theme: { props: { fill: 'var(--color-red)'}}}, contacts.add('cross'))
+    const icon_minus = icon({name: 'minus', is_shadow: true, theme: { props: { fill: 'var(--color-yellow)'}}}, contacts.add('minus'))
+    const iconPlus = icon({name: 'plus', is_shadow: true, theme: { props: { fill: 'var(--color-green)'}}}, contacts.add('plus'))
+    const icon_up = icon({name: 'arrow-up', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}}, contacts.add('up'))
+    const icon_down = icon({name: 'arrow-down', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}}, contacts.add('down'))
+    const icon_left = icon({name: 'arrow-left', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}}, contacts.add('left'))
+    const icon_right= icon({name: 'arrow-right', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}}, contacts.add('right'))
+    const icon_play = icon({name: 'play', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}}, contacts.add('play'))
+    const icon_pause = icon({name: 'pause', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}}, contacts.add('pause'))
+    const icon_stop = icon({name: 'stop', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}}, contacts.add('stop'))
+    const icon_option = icon({name: 'option', is_shadow: true, theme: { props: { fill: 'var(--color-black)'}}}, contacts.add('option'))
+    const icon_hide = icon({name: 'hide', is_shadow: true, theme: { props: { fill: 'var(--color-grey88)'}}}, contacts.add('hide'))
+    const icon_show = icon({name: 'show', is_shadow: true, theme: { props: { fill: 'var(--color-blue)'}}}, contacts.add('show'))
+    const icon_transfer = icon({name: 'transfer', path: './svg'}, contacts.add('transfer'))
+    const icon_edit = icon({name: 'edit', is_shadow: true}, contacts.add('edit'))
+    const icon_import = icon({name: 'import', is_shadow: true}, contacts.add('import'))
+    const icon_filter = icon({name: 'filter', is_shadow: true}, contacts.add('filter'))
+    const icon_help = icon({name: 'help', is_shadow: true}, contacts.add('help'))
+    const icon_linechart = icon({name: 'linechart', is_shadow: true}, contacts.add('linechart'))
+    const icon_treemap = icon({name: 'treemap', is_shadow: true}, contacts.add('treemap'))
+    const icon_sort_up = icon({name: 'sort-up', is_shadow: true}, contacts.add('sort-up'))
+    const icon_sort_down = icon({name: 'sort-down', is_shadow: true}, contacts.add('sort-down'))
+    const icon_pin = icon({name: 'pin', is_shadow: true}, contacts.add('pin'))
+    const iconList = icon({name: 'list', is_shadow: true}, contacts.add('list'))
+    const icon_remove = icon({name: 'remove', is_shadow: true}, contacts.add('remove'))
+    const icon_trash = icon({name: 'trash', is_shadow: true}, contacts.add('trash'))
+    const icon_search = icon({name: 'search', is_shadow: true}, contacts.add('search'))
+    const icon_activity = icon({name: 'activity', is_shadow: true}, contacts.add('activity'))
+    const icon_action = icon({name: 'action', is_shadow: true}, contacts.add('action'))
+    const icon_plan_list = icon({name: 'plan-list', is_shadow: true}, contacts.add('plan-list'))
     // sub-step
-    const icon_step_confirm = icon({name: 'step-confirm', is_shadow: true, theme: { props: { size: '30px' }} })
-    const icon_step_cancel = icon({name: 'step-cancel', is_shadow: true, theme: { props: { size: '30px' }} })
+    const icon_step_confirm = icon({name: 'step-confirm', is_shadow: true, theme: { props: { size: '30px' }} }, contacts.add('step-confirm'))
+    const icon_step_cancel = icon({name: 'step-cancel', is_shadow: true, theme: { props: { size: '30px' }} }, contacts.add('step-cancel'))
     // transfer event
-    const icon_event_transfer = icon({name: 'event-transfer', is_shadow: true, theme: { props: { size: '40px' }} })
-    const icon_event_pending = icon({name: 'event-pending', is_shadow: true, theme: { props: { size: '40px' }} })
-    const icon_event_cancel = icon({name: 'event-cancel', is_shadow: true, theme: { props: { size: '40px' }} })
-    const icon_event_to = icon({name: 'event-to', is_shadow: true, theme: { props: { size: '40px' }} })
+    const icon_event_transfer = icon({name: 'event-transfer', is_shadow: true, theme: { props: { size: '40px' }} }, contacts.add('event-transfer'))
+    const icon_event_pending = icon({name: 'event-pending', is_shadow: true, theme: { props: { size: '40px' }} }, contacts.add('event-pending'))
+    const icon_event_cancel = icon({name: 'event-cancel', is_shadow: true, theme: { props: { size: '40px' }} }, contacts.add('event-cancel'))
+    const icon_event_to = icon({name: 'event-to', is_shadow: true, theme: { props: { size: '40px' }} }, contacts.add('event-to'))
     // notify
-    const icon_warning = icon({name: 'warning', is_shadow: true, theme: { props: { size: '40px' }}})
-    const icon_notice = icon({name: 'notice', is_shadow: true, theme: { props: { size: '40px' }}})
+    const icon_warning = icon({name: 'warning', is_shadow: true, theme: { props: { size: '40px' }}}, contacts.add('warning'))
+    const icon_notice = icon({name: 'notice', is_shadow: true, theme: { props: { size: '40px' }}}, contacts.add('notice'))
 
     // APP
     const app = bel`
@@ -247,7 +253,7 @@ button:hover svg g {
 `
 
 document.body.append(demo())
-},{"..":27,"bel":4,"csjs-inject":7,"head":2}],2:[function(require,module,exports){
+},{"..":29,"bel":4,"csjs-inject":7,"head":2,"protocol-maker":25}],2:[function(require,module,exports){
 module.exports = head
 
 function head (lang = 'utf8', title = 'Icon - DatDot UI') {
@@ -491,7 +497,7 @@ module.exports = hyperx(belCreateElement, {comments: true})
 module.exports.default = module.exports
 module.exports.createElement = belCreateElement
 
-},{"./appendChild":3,"hyperx":25}],5:[function(require,module,exports){
+},{"./appendChild":3,"hyperx":27}],5:[function(require,module,exports){
 (function (global){(function (){
 'use strict';
 
@@ -510,7 +516,7 @@ function csjsInserter() {
 module.exports = csjsInserter;
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"csjs":10,"insert-css":26}],6:[function(require,module,exports){
+},{"csjs":10,"insert-css":28}],6:[function(require,module,exports){
 'use strict';
 
 module.exports = require('csjs/get-css');
@@ -988,6 +994,147 @@ function scopify(css, ignores) {
 }
 
 },{"./regex":20,"./replace-animations":21,"./scoped-name":22}],24:[function(require,module,exports){
+module.exports = function message_maker (from) {
+  let msg_id = 0
+  return function make ({to, type, data = null, refs = {} }) {
+      const stack = (new Error().stack.split('\n').slice(2).filter(x => x.trim()))
+      return { head: [from, to, msg_id++], refs, type, data, meta: { stack }}
+  }
+}
+},{}],25:[function(require,module,exports){
+// const path = require('path')
+// const filename = path.basename(__filename)
+const message_maker = require('message-maker')
+// const message_id = to => (outbox[to] = 1 + (outbox[to]||0))
+
+module.exports = protocol_maker
+
+const routes = {}
+var id = 0
+
+function protocol_maker (type, listen, initial_contacts = {}) {
+  if (!type || typeof type !== 'string') throw new Error('invalid type')
+  const myaddress = id++
+
+  const inbox = {}
+  const outbox = {}
+
+  const by_name = {}
+  const by_address = {}
+  const contacts = { add, by_name, by_address, cut, on }
+  
+  const keys = Object.keys(initial_contacts)
+  for (var i = 0, len = keys.length; i < len; i++) {
+    const name = keys[i]
+    const wire = initial_contacts[name]
+    // @INFO: perspective of sub instance:
+    const { notify, address } = wire(myaddress, wrap_listen(listen))    
+    const contact = {
+      name,
+      address,
+      // path: `${myaddress}/${name}`,
+      notify: wrap_notify(notify),
+      make: message_maker(myaddress)
+    }
+    by_name[name] = by_address[address] = contact // new Promise(resolve => resolve(contact))
+  }
+  return contacts
+  function on (listener) {
+    // @NOTE: to listen to any "default protocol events" supported by any protocol, e.g. help
+    // maybe also: 'connect', or 'disconnect'
+    throw new Error ('`on` is not yet implemented')
+    return function off () {}
+  }
+  function cut (wire) { throw new Error ('`cut` is not yet implemented')}
+  function add (name) {
+    // @INFO: perspective of instance:
+    if (!name || typeof name !== 'string') throw new Error('invalid name')
+    if (by_name[name]) throw new Error('name already exists')
+    const wait = {}
+    by_name[name] = { name, make: message_maker(myaddress) } // new Promise((resolve, reject) => { wait.resolve = resolve; wait.reject = reject })
+    return function wire (address, notify) {
+      const contact = {
+        // @TODO: add queryable "routes" and allow lookup `by_route[route]`       
+        name, // a nickname dev gives to a component
+        address, // an address app makes for each component
+        // TODO: address will become "name" (like type) compared to nickname
+        // address: something new, based on e.g. filepath or browserified bundle.js:22:42 etc.. to give actual globally unique identifier
+        notify: wrap_notify(notify),
+        make: message_maker(myaddress)
+      }
+      // wait.resolve(contact)
+      by_name[name].address = address
+      by_name[name].notify = wrap_notify(notify)
+      by_address[address] = contact // new Promise(resolve => resolve(contact))
+      return { notify: wrap_listen(listen), address: myaddress }
+    }
+  }
+  function wrap_notify (notify) {
+    return message => {
+      outbox[message.head.join('/')] = message  // store message
+      return notify(message)
+    }
+  }
+  function wrap_listen (listen) {
+    return message => {
+      inbox[message.head.join('/')] = message  // store message
+      return listen(message)
+    }
+  }
+}
+/*
+const name_routes = [
+  "root/",
+  "root/el:demo/",
+  "root/el:demo/cpu:range-slider/",
+  "root/el:demo/cpu:range-slider/%:input-number/",
+  "root/el:demo/ram:range-slider/",
+  "root/el:demo/ram:range-slider/GB:input-number/",
+  "root/el:demo/upload:range-slider/",
+  "root/el:demo/upload:range-slider/MB:input-number/",
+  "root/el:demo/download:range-slider/",
+  "root/el:demo/download:range-slider/MB:input-number/",  
+]
+// --------------------------------------------------
+const name_routes = {
+    root: {
+        "el:demo": {
+            "cpu:range-slider": {
+                "%:input-number": {}
+            },
+            "ram:range-slider": {
+                "GB:input-number": {}
+            },
+            "download:range-slider": {
+                "MB:input-number": {}
+            },
+            "upload:range-slider": {
+                "MB:input-number": {}
+            },
+        },
+    },
+}
+// --------------------------------------------------
+const name_routes = {
+    root: {
+        "el": {
+            "cpu": {
+                "%": {}
+            },
+            "ram": {
+                "GB": {}
+            },
+            "download": {
+                "MB": {}
+            },
+            "upload": {
+                "MB": {}
+            },
+        },
+    },
+}
+*/
+},{"message-maker":24}],26:[function(require,module,exports){
 module.exports = attributeToProperty
 
 var transform = {
@@ -1008,7 +1155,7 @@ function attributeToProperty (h) {
   }
 }
 
-},{}],25:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 var attrToProp = require('hyperscript-attribute-to-property')
 
 var VAR = 0, TEXT = 1, OPEN = 2, CLOSE = 3, ATTR = 4
@@ -1305,7 +1452,7 @@ var closeRE = RegExp('^(' + [
 ].join('|') + ')(?:[\.#][a-zA-Z0-9\u007F-\uFFFF_:-]+)*$')
 function selfClosing (tag) { return closeRE.test(tag) }
 
-},{"hyperscript-attribute-to-property":24}],26:[function(require,module,exports){
+},{"hyperscript-attribute-to-property":26}],28:[function(require,module,exports){
 var inserted = {};
 
 module.exports = function (css, options) {
@@ -1329,11 +1476,19 @@ module.exports = function (css, options) {
     }
 };
 
-},{}],27:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 const style_sheet = require('support-style-sheet')
 const svg = require('svg')
+const protocol_maker = require('protocol-maker')
 
-module.exports = ({name, path, is_shadow = false, theme}) => {
+module.exports = ({name, path, is_shadow = false, theme}, parent_wire ) => {
+    const initial_contacts = { 'parent': parent_wire }
+    const contacts = protocol_maker('input-number', listen, initial_contacts)
+    function listen (msg) {
+        const { head, refs, type, data, meta } = msg // receive msg
+        const [from, to, msg_id] = head
+    }
+
     const url = path ? path : './src/svg'
     const symbol = svg(`${url}/${name}.svg`)
     if (is_shadow) {
@@ -1386,7 +1541,7 @@ module.exports = ({name, path, is_shadow = false, theme}) => {
     return symbol
 }
 
-},{"support-style-sheet":28,"svg":29}],28:[function(require,module,exports){
+},{"protocol-maker":25,"support-style-sheet":30,"svg":31}],30:[function(require,module,exports){
 module.exports = support_style_sheet
 function support_style_sheet (root, style) {
     return (() => {
@@ -1402,7 +1557,7 @@ function support_style_sheet (root, style) {
         }
     })()
 }
-},{}],29:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 module.exports = svg
 function svg (path) {
     const span = document.createElement('span')

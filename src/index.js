@@ -1,7 +1,15 @@
 const style_sheet = require('support-style-sheet')
 const svg = require('svg')
+const protocol_maker = require('protocol-maker')
 
-module.exports = ({name, path, is_shadow = false, theme}) => {
+module.exports = ({name, path, is_shadow = false, theme}, parent_wire ) => {
+    const initial_contacts = { 'parent': parent_wire }
+    const contacts = protocol_maker('input-number', listen, initial_contacts)
+    function listen (msg) {
+        const { head, refs, type, data, meta } = msg // receive msg
+        const [from, to, msg_id] = head
+    }
+
     const url = path ? path : './src/svg'
     const symbol = svg(`${url}/${name}.svg`)
     if (is_shadow) {
