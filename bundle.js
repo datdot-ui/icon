@@ -10,10 +10,15 @@ function demo () {
     function listen (msg) {
         const { head, refs, type, data, meta } = msg // receive msg
         const [from, to, msg_id] = head
+        const $from = contacts.by_address[from]
+        if (type === 'click') {
+            $from.notify($from.make({ to: $from.address, type: 'update', data: { sheets: [0, new_theme] }}))
+            if ($from.name ==='check') $from.notify($from.make({ to: $from.address, type: 'help' }))
+        }
+        if (type === 'help') { console.log('Help reponse - current state', data) }
     }    
     // icons
-    const icon_check = icon({name: 'check', is_shadow: true,
-        theme: {style: `
+    const new_theme = `
             :host(i-icon) span {
                 padding: 4px;
                 background-color: hsl(var(--color-greyF2));
@@ -22,54 +27,50 @@ function demo () {
                 --fill: var(--color-amaranth-pink);
                 stroke-width: 1;
                 stroke: hsl(var(--color-amaranth-pink));
-            };`,
-            props: {
-                //  fill: 'var(--color-persian-rose)',
-                // size: '8rem'
             }
-        }
-    }, contacts.add('check'))
-    const icon_cross = icon({name: 'cross', is_shadow: true, theme: { props: { fill: 'var(--color-red)'}}}, contacts.add('cross'))
-    const icon_minus = icon({name: 'minus', is_shadow: true, theme: { props: { fill: 'var(--color-yellow)'}}}, contacts.add('minus'))
-    const iconPlus = icon({name: 'plus', is_shadow: true, theme: { props: { fill: 'var(--color-green)'}}}, contacts.add('plus'))
-    const icon_up = icon({name: 'arrow-up', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}}, contacts.add('up'))
-    const icon_down = icon({name: 'arrow-down', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}}, contacts.add('down'))
-    const icon_left = icon({name: 'arrow-left', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}}, contacts.add('left'))
-    const icon_right= icon({name: 'arrow-right', is_shadow: true, theme: { props: { fill: 'var(--color-purple)'}}}, contacts.add('right'))
-    const icon_play = icon({name: 'play', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}}, contacts.add('play'))
-    const icon_pause = icon({name: 'pause', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}}, contacts.add('pause'))
-    const icon_stop = icon({name: 'stop', is_shadow: true, theme: { props: { fill: 'var(--color-orange)'}}}, contacts.add('stop'))
-    const icon_option = icon({name: 'option', is_shadow: true, theme: { props: { fill: 'var(--color-black)'}}}, contacts.add('option'))
-    const icon_hide = icon({name: 'hide', is_shadow: true, theme: { props: { fill: 'var(--color-grey88)'}}}, contacts.add('hide'))
-    const icon_show = icon({name: 'show', is_shadow: true, theme: { props: { fill: 'var(--color-blue)'}}}, contacts.add('show'))
-    const icon_transfer = icon({name: 'transfer', path: './svg'}, contacts.add('transfer'))
-    const icon_edit = icon({name: 'edit', is_shadow: true}, contacts.add('edit'))
-    const icon_import = icon({name: 'import', is_shadow: true}, contacts.add('import'))
-    const icon_filter = icon({name: 'filter', is_shadow: true}, contacts.add('filter'))
-    const icon_help = icon({name: 'help', is_shadow: true}, contacts.add('help'))
-    const icon_linechart = icon({name: 'linechart', is_shadow: true}, contacts.add('linechart'))
-    const icon_treemap = icon({name: 'treemap', is_shadow: true}, contacts.add('treemap'))
-    const icon_sort_up = icon({name: 'sort-up', is_shadow: true}, contacts.add('sort-up'))
-    const icon_sort_down = icon({name: 'sort-down', is_shadow: true}, contacts.add('sort-down'))
-    const icon_pin = icon({name: 'pin', is_shadow: true}, contacts.add('pin'))
-    const iconList = icon({name: 'list', is_shadow: true}, contacts.add('list'))
-    const icon_remove = icon({name: 'remove', is_shadow: true}, contacts.add('remove'))
-    const icon_trash = icon({name: 'trash', is_shadow: true}, contacts.add('trash'))
-    const icon_search = icon({name: 'search', is_shadow: true}, contacts.add('search'))
-    const icon_activity = icon({name: 'activity', is_shadow: true}, contacts.add('activity'))
-    const icon_action = icon({name: 'action', is_shadow: true}, contacts.add('action'))
-    const icon_plan_list = icon({name: 'plan-list', is_shadow: true}, contacts.add('plan-list'))
+        `
+    const icon_check = icon({name: 'check', theme: new_theme }, contacts.add('check'))
+    const icon_cross = icon({ name: 'cross', theme: `:host(i-icon) svg g { --fill: var(--color-red); }` }, contacts.add('cross'))
+    const icon_minus = icon({name: 'minus', theme: `:host(i-icon) svg g { --fill: var(--color-yellow); }`}, contacts.add('minus'))
+    const iconPlus = icon({name: 'plus', theme: `:host(i-icon) svg g { --fill: var(--color-green); }`}, contacts.add('plus'))
+    const icon_up = icon({name: 'arrow-up', theme: `:host(i-icon) svg g { --fill: var(--color-purple); }`}, contacts.add('up'))
+    const icon_down = icon({name: 'arrow-down', theme: `:host(i-icon) svg g { --fill: var(--color-purple); }`}, contacts.add('down'))
+    const icon_left = icon({name: 'arrow-left', theme: `:host(i-icon) svg g { --fill: var(--color-purple); }`}, contacts.add('left'))
+    const icon_right= icon({name: 'arrow-right', theme: `:host(i-icon) svg g { --fill: var(--color-purple); }`}, contacts.add('right'))
+    const icon_play = icon({name: 'play', theme: `:host(i-icon) svg g { --fill: var(--color-orange); }`}, contacts.add('play'))
+    const icon_pause = icon({name: 'pause', theme: `:host(i-icon) svg g { --fill: var(--color-orange); }`}, contacts.add('pause'))
+    const icon_stop = icon({name: 'stop', theme: `:host(i-icon) svg g { --fill: var(--color-orange); }`}, contacts.add('stop'))
+    const icon_option = icon({name: 'option', theme: `:host(i-icon) svg g { --fill: var(--color-black); }`}, contacts.add('option'))
+    const icon_hide = icon({name: 'hide', theme: `:host(i-icon) svg g { --fill: var(--color-grey88); }`}, contacts.add('hide'))
+    const icon_show = icon({name: 'show', theme: `:host(i-icon) svg g { --fill: var(--color-blue); }`}, contacts.add('show'))
+    const icon_debug = icon({name: 'debug' }, contacts.add('debug'))
+    const icon_edit = icon({name: 'edit' }, contacts.add('edit'))
+    const icon_import = icon({name: 'import' }, contacts.add('import'))
+    const icon_filter = icon({name: 'filter' }, contacts.add('filter'))
+    const icon_help = icon({name: 'help' }, contacts.add('help'))
+    const icon_linechart = icon({name: 'linechart' }, contacts.add('linechart'))
+    const icon_treemap = icon({name: 'treemap' }, contacts.add('treemap'))
+    const icon_sort_up = icon({name: 'sort-up' }, contacts.add('sort-up'))
+    const icon_sort_down = icon({name: 'sort-down' }, contacts.add('sort-down'))
+    const icon_pin = icon({name: 'pin' }, contacts.add('pin'))
+    const iconList = icon({name: 'list' }, contacts.add('list'))
+    const icon_remove = icon({name: 'remove' }, contacts.add('remove'))
+    const icon_trash = icon({name: 'trash' }, contacts.add('trash'))
+    const icon_search = icon({name: 'search' }, contacts.add('search'))
+    const icon_activity = icon({name: 'activity' }, contacts.add('activity'))
+    const icon_action = icon({name: 'action' }, contacts.add('action'))
+    const icon_plan_list = icon({name: 'plan-list' }, contacts.add('plan-list'))
     // sub-step
-    const icon_step_confirm = icon({name: 'step-confirm', is_shadow: true, theme: { props: { size: '30px' }} }, contacts.add('step-confirm'))
-    const icon_step_cancel = icon({name: 'step-cancel', is_shadow: true, theme: { props: { size: '30px' }} }, contacts.add('step-cancel'))
+    const icon_step_confirm = icon({name: 'step-confirm', theme: `:host(i-icon) { --size: 30px; }` }, contacts.add('step-confirm'))
+    const icon_step_cancel = icon({name: 'step-cancel', theme: `:host(i-icon) { --size: 30px; }` }, contacts.add('step-cancel'))
     // transfer event
-    const icon_event_transfer = icon({name: 'event-transfer', is_shadow: true, theme: { props: { size: '40px' }} }, contacts.add('event-transfer'))
-    const icon_event_pending = icon({name: 'event-pending', is_shadow: true, theme: { props: { size: '40px' }} }, contacts.add('event-pending'))
-    const icon_event_cancel = icon({name: 'event-cancel', is_shadow: true, theme: { props: { size: '40px' }} }, contacts.add('event-cancel'))
-    const icon_event_to = icon({name: 'event-to', is_shadow: true, theme: { props: { size: '40px' }} }, contacts.add('event-to'))
+    const icon_event_transfer = icon({name: 'event-transfer', theme: `:host(i-icon) { --size: 40px; }` }, contacts.add('event-transfer'))
+    const icon_event_pending = icon({name: 'event-pending', theme: `:host(i-icon) { --size: 40px; }` }, contacts.add('event-pending'))
+    const icon_event_cancel = icon({name: 'event-cancel', theme: `:host(i-icon) { --size: 40px; }` }, contacts.add('event-cancel'))
+    const icon_event_to = icon({name: 'event-to', theme: `:host(i-icon) { --size: 40px; }` }, contacts.add('event-to'))
     // notify
-    const icon_warning = icon({name: 'warning', is_shadow: true, theme: { props: { size: '40px' }}}, contacts.add('warning'))
-    const icon_notice = icon({name: 'notice', is_shadow: true, theme: { props: { size: '40px' }}}, contacts.add('notice'))
+    const icon_warning = icon({name: 'warning', theme: `:host(i-icon) { --size: 40px; }`}, contacts.add('warning'))
+    const icon_notice = icon({name: 'notice', theme: `:host(i-icon) { --size: 40px; }`}, contacts.add('notice'))
 
     // APP
     const app = bel`
@@ -155,7 +156,7 @@ function demo () {
         <section>
         <h2>Button</h2>
         <aside>
-        <button>${icon_transfer}</button>
+        <button>${icon_debug}</button>
         </aside>
         </section>
     </div>`
@@ -1477,87 +1478,121 @@ module.exports = function (css, options) {
 };
 
 },{}],29:[function(require,module,exports){
-const style_sheet = require('support-style-sheet')
 const svg = require('svg')
 const protocol_maker = require('protocol-maker')
 
-module.exports = ({name, path, is_shadow = false, theme}, parent_wire ) => {
+var id = 0
+const sheet = new CSSStyleSheet()
+const default_opts = { 
+	name: 'icon',
+	path: './src/svg',
+	theme: get_theme()
+}
+sheet.replaceSync(default_opts.theme)
+
+module.exports = icon
+
+icon.help = () => { return { opts: default_opts } }
+
+function icon (opts, parent_wire ) {
+    const { name = default_opts.name, path = default_opts.path, theme = `` } = opts
+    const current_state = { opts: { name, path, sheets: [default_opts.theme, theme] } }
+
+    // protocol
     const initial_contacts = { 'parent': parent_wire }
-    const contacts = protocol_maker('input-number', listen, initial_contacts)
+    const contacts = protocol_maker('icon', listen, initial_contacts)
     function listen (msg) {
         const { head, refs, type, data, meta } = msg // receive msg
         const [from, to, msg_id] = head
+        const $from = contacts.by_address[from]
+        if (type === 'help') {
+            $from.notify($from.make({ to: $from.address, type: 'help', data: { state: get_current_state() }, refs: { cause: head }}))
+        }
+        if (type === 'update') handle_update(data)
     }
 
-    const url = path ? path : './src/svg'
-    const symbol = svg(`${url}/${name}.svg`)
-    if (is_shadow) {
-        function layout (style) {
-            const icon = document.createElement('i-icon')
-            const shadow = icon.attachShadow({mode: 'closed'})
-            const slot = document.createElement('slot')
-            slot.name = 'icon'
-            style_sheet(shadow, style)
-            slot.append(symbol)
-            shadow.append(slot)
-            return icon
-        }
+    // make icon 
+    const icon = document.createElement('i-icon')
+    const shadow = icon.attachShadow({mode: 'closed'})
+    const slot = document.createElement('slot')
 
-        // insert CSS style
-        const custom_style = theme ? theme.style : ''
-        // set CSS variables
-        if (theme && theme.props) {
-            var { fill, size } = theme.props
-        }
-        const style = `
-        :host(i-icon) {
-            --size: ${size ? size : '24px'};
-            --fill: ${fill ? fill : 'var(--primary-color)'};
-            display: block;
-        }
-        slot[name='icon'] {
-            display: grid;
-            justify-content: center;
-            align-items: center;
-        }
-        slot[name='icon'] span {
-            display: block;
-            width: var(--size);
-            height: var(--size);
-        }
-        slot[name='icon'] svg {
-            width: 100%;
-            height: auto;
-        }
-        slot[name='icon'] g {
-            fill: hsl(var(--fill));
-            transition: fill .3s ease-in-out;
-        }
-        ${custom_style}
-        `
-        return layout(style)
+    slot.name = 'icon'
+    const symbol = svg(`${path}/${name}.svg`)
+    slot.append(symbol)
+    slot.onclick = (e) => handle_click(e)
+    
+    
+    const custom_theme = new CSSStyleSheet()
+    custom_theme.replaceSync(theme)
+    shadow.adoptedStyleSheets = [sheet, custom_theme]
+    
+    shadow.append(slot)
+    
+    return icon
+
+    // event handlers
+    function handle_click (e) {
+        const $parent = contacts.by_name['parent']
+        $parent.notify($parent.make({ to: $parent.address, type: 'click', data: {}}))
     }
-
-    return symbol
-}
-
-},{"protocol-maker":25,"support-style-sheet":30,"svg":31}],30:[function(require,module,exports){
-module.exports = support_style_sheet
-function support_style_sheet (root, style) {
-    return (() => {
-        try {
-            const sheet = new CSSStyleSheet()
-            sheet.replaceSync(style)
-            root.adoptedStyleSheets = [sheet]
-            return true 
-        } catch (error) { 
-            const inject_style = `<style>${style}</style>`
-            root.innerHTML = `${inject_style}`
-            return false
+    function handle_update (data) {
+        const { sheets } = data
+        if (sheets) {
+            const new_sheets = sheets.map(sheet => {
+            if (typeof sheet === 'string') {
+                current_state.opts.sheets.push(sheet)
+                const new_sheet = new CSSStyleSheet()
+                new_sheet.replaceSync(sheet)
+                return new_sheet
+                } 
+                if (typeof sheet === 'number') return shadow.adoptedStyleSheets[sheet]
+            })
+            shadow.adoptedStyleSheets = new_sheets
         }
-    })()
+    }
+    
+    // get current state
+	function get_current_state () {
+		return  {
+			opts: current_state.opts,
+			contacts
+		}
+	}
 }
-},{}],31:[function(require,module,exports){
+
+function get_theme () {
+    return `
+    :host(i-icon) {
+        --b: 0, 0%;
+        --color-black: var(--b); 0%;
+        --primary-color: var(--color-black);
+        --size: 24px;
+        --fill: var(--primary-color);
+        display: block;
+    }
+    slot[name='icon'] {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    slot[name='icon'] span {
+        display: block;
+        width: var(--size);
+        height: var(--size);
+    }
+    slot[name='icon'] svg {
+        width: 100%;
+        height: auto;
+    }
+    slot[name='icon'] g {
+        fill: hsl(var(--fill));
+        transition: fill .3s ease-in-out;
+    }
+    `
+}
+
+
+},{"protocol-maker":25,"svg":30}],30:[function(require,module,exports){
 module.exports = svg
 function svg (path) {
     const span = document.createElement('span')

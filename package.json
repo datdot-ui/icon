@@ -1,7 +1,7 @@
 {
   "name": "datdot-ui-icon",
-  "version": "0.0.2-alpha",
-  "description": "Load svg icon",
+  "version": "0.0.4-alpha",
+  "description": "vanilla js icon component",
   "main": "src/index.js",
   "scripts": {
     "start": "budo demo/demo.js:bundle.js --open --live",
@@ -17,7 +17,7 @@
     "icon",
     "datdot-ui"
   ],
-  "author": "datdotorg",
+  "author": "ninabreznik",
   "license": "MIT",
   "homepage": "https://github.com/datdot-ui/icon#readme",
   "dependencies": {
